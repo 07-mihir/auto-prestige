@@ -50,7 +50,7 @@ function UserDashboard() {
               { icon: TrendingUp, text: "Price dropped on saved car", time: "2d ago" },
             ].map((a, i) => (
               <li key={i} className="flex items-start gap-3">
-                <div className="w-8 h-8 rounded-lg bg-primary/15 text-primary flex items-center justify-center shrink-0"><a.icon className="w-4 h-4" /></a>
+                <div className="w-8 h-8 rounded-lg bg-primary/15 text-primary flex items-center justify-center shrink-0"><a.icon className="w-4 h-4" /></div>
                 <div className="flex-1">
                   <p className="text-sm">{a.text}</p>
                   <p className="text-[11px] text-muted-foreground">{a.time}</p>
