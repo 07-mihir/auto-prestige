@@ -6,8 +6,10 @@ import {
   useRouter,
   useRouterState,
   HeadContent,
+  Scripts,
 } from "@tanstack/react-router";
 
+import appCss from "../styles.css?url";
 import { Navbar } from "@/components/site/navbar";
 import { Footer } from "@/components/site/footer";
 
@@ -60,25 +62,37 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" },
+      { rel: "stylesheet", href: appCss },
+    ],
   }),
+  shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
   errorComponent: ErrorComponent,
-  pendingComponent: () => (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent"></div>
-    </div>
-  ),
 });
+
+function RootShell({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <head><HeadContent /></head>
+      <body>
+        {children}
+        <Scripts />
+      </body>
+    </html>
+  );
+}
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
-  const routerState = useRouterState();
-  const path = routerState.location.pathname;
+  const path = useRouterState({ select: (s) => s.location.pathname });
   const hideChrome = path.startsWith("/login") || path.startsWith("/register");
   return (
     <QueryClientProvider client={queryClient}>
-      <HeadContent />
       <div className="min-h-screen flex flex-col bg-background text-foreground">
         {!hideChrome && <Navbar />}
         <main className={`flex-1 ${!hideChrome ? "pt-20" : ""}`}>
@@ -89,4 +103,3 @@ function RootComponent() {
     </QueryClientProvider>
   );
 }
-
