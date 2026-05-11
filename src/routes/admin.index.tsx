@@ -3,7 +3,7 @@ import { LayoutDashboard, Users, Building2, Car, Shield, BarChart3, IndianRupee,
 import { DashboardShell, StatCard } from "@/components/site/dashboard-shell";
 import { Button } from "@/components/ui/button";
 
-export const Route = createFileRoute("/admin")({
+export const Route = createFileRoute("/admin/")({
   head: () => ({ meta: [{ title: "Admin — DriveX" }] }),
   component: AdminDashboard,
 });
