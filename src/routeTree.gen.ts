@@ -29,6 +29,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardWishlistRouteImport } from './routes/dashboard.wishlist'
 import { Route as DashboardTestDrivesRouteImport } from './routes/dashboard.test-drives'
+import { Route as DashboardNotificationsRouteImport } from './routes/dashboard.notifications'
 import { Route as DashboardListingsRouteImport } from './routes/dashboard.listings'
 import { Route as DashboardInboxRouteImport } from './routes/dashboard.inbox'
 import { Route as CarIdRouteImport } from './routes/car.$id'
@@ -133,6 +134,11 @@ const DashboardTestDrivesRoute = DashboardTestDrivesRouteImport.update({
   path: '/test-drives',
   getParentRoute: () => DashboardRoute,
 } as any)
+const DashboardNotificationsRoute = DashboardNotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => DashboardRoute,
+} as any)
 const DashboardListingsRoute = DashboardListingsRouteImport.update({
   id: '/listings',
   path: '/listings',
@@ -171,6 +177,7 @@ export interface FileRoutesByFullPath {
   '/car/$id': typeof CarIdRoute
   '/dashboard/inbox': typeof DashboardInboxRoute
   '/dashboard/listings': typeof DashboardListingsRoute
+  '/dashboard/notifications': typeof DashboardNotificationsRoute
   '/dashboard/test-drives': typeof DashboardTestDrivesRoute
   '/dashboard/wishlist': typeof DashboardWishlistRoute
 }
@@ -196,6 +203,7 @@ export interface FileRoutesByTo {
   '/car/$id': typeof CarIdRoute
   '/dashboard/inbox': typeof DashboardInboxRoute
   '/dashboard/listings': typeof DashboardListingsRoute
+  '/dashboard/notifications': typeof DashboardNotificationsRoute
   '/dashboard/test-drives': typeof DashboardTestDrivesRoute
   '/dashboard/wishlist': typeof DashboardWishlistRoute
 }
@@ -222,6 +230,7 @@ export interface FileRoutesById {
   '/car/$id': typeof CarIdRoute
   '/dashboard/inbox': typeof DashboardInboxRoute
   '/dashboard/listings': typeof DashboardListingsRoute
+  '/dashboard/notifications': typeof DashboardNotificationsRoute
   '/dashboard/test-drives': typeof DashboardTestDrivesRoute
   '/dashboard/wishlist': typeof DashboardWishlistRoute
 }
@@ -249,6 +258,7 @@ export interface FileRouteTypes {
     | '/car/$id'
     | '/dashboard/inbox'
     | '/dashboard/listings'
+    | '/dashboard/notifications'
     | '/dashboard/test-drives'
     | '/dashboard/wishlist'
   fileRoutesByTo: FileRoutesByTo
@@ -274,6 +284,7 @@ export interface FileRouteTypes {
     | '/car/$id'
     | '/dashboard/inbox'
     | '/dashboard/listings'
+    | '/dashboard/notifications'
     | '/dashboard/test-drives'
     | '/dashboard/wishlist'
   id:
@@ -299,6 +310,7 @@ export interface FileRouteTypes {
     | '/car/$id'
     | '/dashboard/inbox'
     | '/dashboard/listings'
+    | '/dashboard/notifications'
     | '/dashboard/test-drives'
     | '/dashboard/wishlist'
   fileRoutesById: FileRoutesById
@@ -467,6 +479,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardTestDrivesRouteImport
       parentRoute: typeof DashboardRoute
     }
+    '/dashboard/notifications': {
+      id: '/dashboard/notifications'
+      path: '/notifications'
+      fullPath: '/dashboard/notifications'
+      preLoaderRoute: typeof DashboardNotificationsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
     '/dashboard/listings': {
       id: '/dashboard/listings'
       path: '/listings'
@@ -494,6 +513,7 @@ declare module '@tanstack/react-router' {
 interface DashboardRouteChildren {
   DashboardInboxRoute: typeof DashboardInboxRoute
   DashboardListingsRoute: typeof DashboardListingsRoute
+  DashboardNotificationsRoute: typeof DashboardNotificationsRoute
   DashboardTestDrivesRoute: typeof DashboardTestDrivesRoute
   DashboardWishlistRoute: typeof DashboardWishlistRoute
 }
@@ -501,6 +521,7 @@ interface DashboardRouteChildren {
 const DashboardRouteChildren: DashboardRouteChildren = {
   DashboardInboxRoute: DashboardInboxRoute,
   DashboardListingsRoute: DashboardListingsRoute,
+  DashboardNotificationsRoute: DashboardNotificationsRoute,
   DashboardTestDrivesRoute: DashboardTestDrivesRoute,
   DashboardWishlistRoute: DashboardWishlistRoute,
 }
