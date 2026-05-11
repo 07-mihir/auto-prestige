@@ -33,6 +33,7 @@ import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as DealerLeadsRouteImport } from './routes/dealer.leads'
 import { Route as DealerInventoryRouteImport } from './routes/dealer.inventory'
 import { Route as DealerInboxRouteImport } from './routes/dealer.inbox'
+import { Route as DealerAppointmentsRouteImport } from './routes/dealer.appointments'
 import { Route as DealerAnalyticsRouteImport } from './routes/dealer.analytics'
 import { Route as DashboardWishlistRouteImport } from './routes/dashboard.wishlist'
 import { Route as DashboardTestDrivesRouteImport } from './routes/dashboard.test-drives'
@@ -163,6 +164,11 @@ const DealerInboxRoute = DealerInboxRouteImport.update({
   path: '/inbox',
   getParentRoute: () => DealerRoute,
 } as any)
+const DealerAppointmentsRoute = DealerAppointmentsRouteImport.update({
+  id: '/appointments',
+  path: '/appointments',
+  getParentRoute: () => DealerRoute,
+} as any)
 const DealerAnalyticsRoute = DealerAnalyticsRouteImport.update({
   id: '/analytics',
   path: '/analytics',
@@ -237,6 +243,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/test-drives': typeof DashboardTestDrivesRoute
   '/dashboard/wishlist': typeof DashboardWishlistRoute
   '/dealer/analytics': typeof DealerAnalyticsRoute
+  '/dealer/appointments': typeof DealerAppointmentsRoute
   '/dealer/inbox': typeof DealerInboxRoute
   '/dealer/inventory': typeof DealerInventoryRoute
   '/dealer/leads': typeof DealerLeadsRoute
@@ -269,6 +276,7 @@ export interface FileRoutesByTo {
   '/dashboard/test-drives': typeof DashboardTestDrivesRoute
   '/dashboard/wishlist': typeof DashboardWishlistRoute
   '/dealer/analytics': typeof DealerAnalyticsRoute
+  '/dealer/appointments': typeof DealerAppointmentsRoute
   '/dealer/inbox': typeof DealerInboxRoute
   '/dealer/inventory': typeof DealerInventoryRoute
   '/dealer/leads': typeof DealerLeadsRoute
@@ -305,6 +313,7 @@ export interface FileRoutesById {
   '/dashboard/test-drives': typeof DashboardTestDrivesRoute
   '/dashboard/wishlist': typeof DashboardWishlistRoute
   '/dealer/analytics': typeof DealerAnalyticsRoute
+  '/dealer/appointments': typeof DealerAppointmentsRoute
   '/dealer/inbox': typeof DealerInboxRoute
   '/dealer/inventory': typeof DealerInventoryRoute
   '/dealer/leads': typeof DealerLeadsRoute
@@ -342,6 +351,7 @@ export interface FileRouteTypes {
     | '/dashboard/test-drives'
     | '/dashboard/wishlist'
     | '/dealer/analytics'
+    | '/dealer/appointments'
     | '/dealer/inbox'
     | '/dealer/inventory'
     | '/dealer/leads'
@@ -374,6 +384,7 @@ export interface FileRouteTypes {
     | '/dashboard/test-drives'
     | '/dashboard/wishlist'
     | '/dealer/analytics'
+    | '/dealer/appointments'
     | '/dealer/inbox'
     | '/dealer/inventory'
     | '/dealer/leads'
@@ -409,6 +420,7 @@ export interface FileRouteTypes {
     | '/dashboard/test-drives'
     | '/dashboard/wishlist'
     | '/dealer/analytics'
+    | '/dealer/appointments'
     | '/dealer/inbox'
     | '/dealer/inventory'
     | '/dealer/leads'
@@ -609,6 +621,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DealerInboxRouteImport
       parentRoute: typeof DealerRoute
     }
+    '/dealer/appointments': {
+      id: '/dealer/appointments'
+      path: '/appointments'
+      fullPath: '/dealer/appointments'
+      preLoaderRoute: typeof DealerAppointmentsRouteImport
+      parentRoute: typeof DealerRoute
+    }
     '/dealer/analytics': {
       id: '/dealer/analytics'
       path: '/analytics'
@@ -713,6 +732,7 @@ const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
 
 interface DealerRouteChildren {
   DealerAnalyticsRoute: typeof DealerAnalyticsRoute
+  DealerAppointmentsRoute: typeof DealerAppointmentsRoute
   DealerInboxRoute: typeof DealerInboxRoute
   DealerInventoryRoute: typeof DealerInventoryRoute
   DealerLeadsRoute: typeof DealerLeadsRoute
@@ -721,6 +741,7 @@ interface DealerRouteChildren {
 
 const DealerRouteChildren: DealerRouteChildren = {
   DealerAnalyticsRoute: DealerAnalyticsRoute,
+  DealerAppointmentsRoute: DealerAppointmentsRoute,
   DealerInboxRoute: DealerInboxRoute,
   DealerInventoryRoute: DealerInventoryRoute,
   DealerLeadsRoute: DealerLeadsRoute,
