@@ -27,6 +27,7 @@ import { Route as AuctionsRouteImport } from './routes/auctions'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DashboardWishlistRouteImport } from './routes/dashboard.wishlist'
 import { Route as CarIdRouteImport } from './routes/car.$id'
 
 const TermsRoute = TermsRouteImport.update({
@@ -119,6 +120,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardWishlistRoute = DashboardWishlistRouteImport.update({
+  id: '/wishlist',
+  path: '/wishlist',
+  getParentRoute: () => DashboardRoute,
+} as any)
 const CarIdRoute = CarIdRouteImport.update({
   id: '/car/$id',
   path: '/car/$id',
@@ -134,7 +140,7 @@ export interface FileRoutesByFullPath {
   '/buy': typeof BuyRoute
   '/compare': typeof CompareRoute
   '/contact': typeof ContactRoute
-  '/dashboard': typeof DashboardRoute
+  '/dashboard': typeof DashboardRouteWithChildren
   '/dealer': typeof DealerRoute
   '/dealers': typeof DealersRoute
   '/faq': typeof FaqRoute
@@ -145,6 +151,7 @@ export interface FileRoutesByFullPath {
   '/sell': typeof SellRoute
   '/terms': typeof TermsRoute
   '/car/$id': typeof CarIdRoute
+  '/dashboard/wishlist': typeof DashboardWishlistRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -155,7 +162,7 @@ export interface FileRoutesByTo {
   '/buy': typeof BuyRoute
   '/compare': typeof CompareRoute
   '/contact': typeof ContactRoute
-  '/dashboard': typeof DashboardRoute
+  '/dashboard': typeof DashboardRouteWithChildren
   '/dealer': typeof DealerRoute
   '/dealers': typeof DealersRoute
   '/faq': typeof FaqRoute
@@ -166,6 +173,7 @@ export interface FileRoutesByTo {
   '/sell': typeof SellRoute
   '/terms': typeof TermsRoute
   '/car/$id': typeof CarIdRoute
+  '/dashboard/wishlist': typeof DashboardWishlistRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -177,7 +185,7 @@ export interface FileRoutesById {
   '/buy': typeof BuyRoute
   '/compare': typeof CompareRoute
   '/contact': typeof ContactRoute
-  '/dashboard': typeof DashboardRoute
+  '/dashboard': typeof DashboardRouteWithChildren
   '/dealer': typeof DealerRoute
   '/dealers': typeof DealersRoute
   '/faq': typeof FaqRoute
@@ -188,6 +196,7 @@ export interface FileRoutesById {
   '/sell': typeof SellRoute
   '/terms': typeof TermsRoute
   '/car/$id': typeof CarIdRoute
+  '/dashboard/wishlist': typeof DashboardWishlistRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -211,6 +220,7 @@ export interface FileRouteTypes {
     | '/sell'
     | '/terms'
     | '/car/$id'
+    | '/dashboard/wishlist'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -232,6 +242,7 @@ export interface FileRouteTypes {
     | '/sell'
     | '/terms'
     | '/car/$id'
+    | '/dashboard/wishlist'
   id:
     | '__root__'
     | '/'
@@ -253,6 +264,7 @@ export interface FileRouteTypes {
     | '/sell'
     | '/terms'
     | '/car/$id'
+    | '/dashboard/wishlist'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -264,7 +276,7 @@ export interface RootRouteChildren {
   BuyRoute: typeof BuyRoute
   CompareRoute: typeof CompareRoute
   ContactRoute: typeof ContactRoute
-  DashboardRoute: typeof DashboardRoute
+  DashboardRoute: typeof DashboardRouteWithChildren
   DealerRoute: typeof DealerRoute
   DealersRoute: typeof DealersRoute
   FaqRoute: typeof FaqRoute
@@ -405,6 +417,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/wishlist': {
+      id: '/dashboard/wishlist'
+      path: '/wishlist'
+      fullPath: '/dashboard/wishlist'
+      preLoaderRoute: typeof DashboardWishlistRouteImport
+      parentRoute: typeof DashboardRoute
+    }
     '/car/$id': {
       id: '/car/$id'
       path: '/car/$id'
@@ -415,6 +434,18 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface DashboardRouteChildren {
+  DashboardWishlistRoute: typeof DashboardWishlistRoute
+}
+
+const DashboardRouteChildren: DashboardRouteChildren = {
+  DashboardWishlistRoute: DashboardWishlistRoute,
+}
+
+const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
+  DashboardRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
@@ -424,7 +455,7 @@ const rootRouteChildren: RootRouteChildren = {
   BuyRoute: BuyRoute,
   CompareRoute: CompareRoute,
   ContactRoute: ContactRoute,
-  DashboardRoute: DashboardRoute,
+  DashboardRoute: DashboardRouteWithChildren,
   DealerRoute: DealerRoute,
   DealersRoute: DealersRoute,
   FaqRoute: FaqRoute,
