@@ -29,6 +29,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardWishlistRouteImport } from './routes/dashboard.wishlist'
 import { Route as DashboardListingsRouteImport } from './routes/dashboard.listings'
+import { Route as DashboardInboxRouteImport } from './routes/dashboard.inbox'
 import { Route as CarIdRouteImport } from './routes/car.$id'
 
 const TermsRoute = TermsRouteImport.update({
@@ -131,6 +132,11 @@ const DashboardListingsRoute = DashboardListingsRouteImport.update({
   path: '/listings',
   getParentRoute: () => DashboardRoute,
 } as any)
+const DashboardInboxRoute = DashboardInboxRouteImport.update({
+  id: '/inbox',
+  path: '/inbox',
+  getParentRoute: () => DashboardRoute,
+} as any)
 const CarIdRoute = CarIdRouteImport.update({
   id: '/car/$id',
   path: '/car/$id',
@@ -157,6 +163,7 @@ export interface FileRoutesByFullPath {
   '/sell': typeof SellRoute
   '/terms': typeof TermsRoute
   '/car/$id': typeof CarIdRoute
+  '/dashboard/inbox': typeof DashboardInboxRoute
   '/dashboard/listings': typeof DashboardListingsRoute
   '/dashboard/wishlist': typeof DashboardWishlistRoute
 }
@@ -180,6 +187,7 @@ export interface FileRoutesByTo {
   '/sell': typeof SellRoute
   '/terms': typeof TermsRoute
   '/car/$id': typeof CarIdRoute
+  '/dashboard/inbox': typeof DashboardInboxRoute
   '/dashboard/listings': typeof DashboardListingsRoute
   '/dashboard/wishlist': typeof DashboardWishlistRoute
 }
@@ -204,6 +212,7 @@ export interface FileRoutesById {
   '/sell': typeof SellRoute
   '/terms': typeof TermsRoute
   '/car/$id': typeof CarIdRoute
+  '/dashboard/inbox': typeof DashboardInboxRoute
   '/dashboard/listings': typeof DashboardListingsRoute
   '/dashboard/wishlist': typeof DashboardWishlistRoute
 }
@@ -229,6 +238,7 @@ export interface FileRouteTypes {
     | '/sell'
     | '/terms'
     | '/car/$id'
+    | '/dashboard/inbox'
     | '/dashboard/listings'
     | '/dashboard/wishlist'
   fileRoutesByTo: FileRoutesByTo
@@ -252,6 +262,7 @@ export interface FileRouteTypes {
     | '/sell'
     | '/terms'
     | '/car/$id'
+    | '/dashboard/inbox'
     | '/dashboard/listings'
     | '/dashboard/wishlist'
   id:
@@ -275,6 +286,7 @@ export interface FileRouteTypes {
     | '/sell'
     | '/terms'
     | '/car/$id'
+    | '/dashboard/inbox'
     | '/dashboard/listings'
     | '/dashboard/wishlist'
   fileRoutesById: FileRoutesById
@@ -443,6 +455,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardListingsRouteImport
       parentRoute: typeof DashboardRoute
     }
+    '/dashboard/inbox': {
+      id: '/dashboard/inbox'
+      path: '/inbox'
+      fullPath: '/dashboard/inbox'
+      preLoaderRoute: typeof DashboardInboxRouteImport
+      parentRoute: typeof DashboardRoute
+    }
     '/car/$id': {
       id: '/car/$id'
       path: '/car/$id'
@@ -454,11 +473,13 @@ declare module '@tanstack/react-router' {
 }
 
 interface DashboardRouteChildren {
+  DashboardInboxRoute: typeof DashboardInboxRoute
   DashboardListingsRoute: typeof DashboardListingsRoute
   DashboardWishlistRoute: typeof DashboardWishlistRoute
 }
 
 const DashboardRouteChildren: DashboardRouteChildren = {
+  DashboardInboxRoute: DashboardInboxRoute,
   DashboardListingsRoute: DashboardListingsRoute,
   DashboardWishlistRoute: DashboardWishlistRoute,
 }
