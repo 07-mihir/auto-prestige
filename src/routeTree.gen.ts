@@ -45,6 +45,7 @@ import { Route as DashboardListingsRouteImport } from './routes/dashboard.listin
 import { Route as DashboardInboxRouteImport } from './routes/dashboard.inbox'
 import { Route as CarIdRouteImport } from './routes/car.$id'
 import { Route as AdminUsersRouteImport } from './routes/admin.users'
+import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
 import { Route as AdminRevenueRouteImport } from './routes/admin.revenue'
 import { Route as AdminListingsRouteImport } from './routes/admin.listings'
 import { Route as AdminFraudRouteImport } from './routes/admin.fraud'
@@ -232,6 +233,11 @@ const AdminUsersRoute = AdminUsersRouteImport.update({
   path: '/users',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminSettingsRoute = AdminSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminRevenueRoute = AdminRevenueRouteImport.update({
   id: '/revenue',
   path: '/revenue',
@@ -288,6 +294,7 @@ export interface FileRoutesByFullPath {
   '/admin/fraud': typeof AdminFraudRoute
   '/admin/listings': typeof AdminListingsRoute
   '/admin/revenue': typeof AdminRevenueRoute
+  '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
   '/car/$id': typeof CarIdRoute
   '/dashboard/inbox': typeof DashboardInboxRoute
@@ -329,6 +336,7 @@ export interface FileRoutesByTo {
   '/admin/fraud': typeof AdminFraudRoute
   '/admin/listings': typeof AdminListingsRoute
   '/admin/revenue': typeof AdminRevenueRoute
+  '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
   '/car/$id': typeof CarIdRoute
   '/dashboard/inbox': typeof DashboardInboxRoute
@@ -374,6 +382,7 @@ export interface FileRoutesById {
   '/admin/fraud': typeof AdminFraudRoute
   '/admin/listings': typeof AdminListingsRoute
   '/admin/revenue': typeof AdminRevenueRoute
+  '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
   '/car/$id': typeof CarIdRoute
   '/dashboard/inbox': typeof DashboardInboxRoute
@@ -420,6 +429,7 @@ export interface FileRouteTypes {
     | '/admin/fraud'
     | '/admin/listings'
     | '/admin/revenue'
+    | '/admin/settings'
     | '/admin/users'
     | '/car/$id'
     | '/dashboard/inbox'
@@ -461,6 +471,7 @@ export interface FileRouteTypes {
     | '/admin/fraud'
     | '/admin/listings'
     | '/admin/revenue'
+    | '/admin/settings'
     | '/admin/users'
     | '/car/$id'
     | '/dashboard/inbox'
@@ -505,6 +516,7 @@ export interface FileRouteTypes {
     | '/admin/fraud'
     | '/admin/listings'
     | '/admin/revenue'
+    | '/admin/settings'
     | '/admin/users'
     | '/car/$id'
     | '/dashboard/inbox'
@@ -801,6 +813,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminUsersRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/settings': {
+      id: '/admin/settings'
+      path: '/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AdminSettingsRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/revenue': {
       id: '/admin/revenue'
       path: '/revenue'
@@ -853,6 +872,7 @@ interface AdminRouteChildren {
   AdminFraudRoute: typeof AdminFraudRoute
   AdminListingsRoute: typeof AdminListingsRoute
   AdminRevenueRoute: typeof AdminRevenueRoute
+  AdminSettingsRoute: typeof AdminSettingsRoute
   AdminUsersRoute: typeof AdminUsersRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
@@ -864,6 +884,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminFraudRoute: AdminFraudRoute,
   AdminListingsRoute: AdminListingsRoute,
   AdminRevenueRoute: AdminRevenueRoute,
+  AdminSettingsRoute: AdminSettingsRoute,
   AdminUsersRoute: AdminUsersRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
