@@ -17,6 +17,13 @@ const items = [
   { to: "/dashboard/settings", label: "Settings", icon: Settings },
 ];
 
+const tone: Record<string, string> = {
+  success: "bg-success/15 text-success",
+  primary: "bg-primary/15 text-primary",
+  accent: "bg-accent/15 text-accent",
+  warning: "bg-warning/15 text-warning",
+};
+
 const notifs = [
   { icon: TrendingDown, color: "success", title: "Price dropped on BMW 5 Series", time: "2h ago", desc: "Now ₹47.5L (was ₹48.5L)" },
   { icon: MessageCircle, color: "primary", title: "New message from Royal Auto Mart", time: "5h ago", desc: "Sure, you can come tomorrow at 11am." },
@@ -31,7 +38,7 @@ function NotifsPage() {
       <div className="gradient-card glass rounded-2xl divide-y divide-border/40">
         {notifs.map((n, i) => (
           <div key={i} className="p-5 flex items-start gap-4 hover:bg-secondary/30 transition">
-            <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-${n.color}/15 text-${n.color}`}><n.icon className="w-5 h-5" /></div>
+            <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${tone[n.color]}`}><n.icon className="w-5 h-5" /></div>
             <div className="flex-1">
               <p className="font-semibold text-sm">{n.title}</p>
               <p className="text-xs text-muted-foreground mt-0.5">{n.desc}</p>
