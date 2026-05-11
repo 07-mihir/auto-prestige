@@ -134,9 +134,9 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const DealerInventoryRoute = DealerInventoryRouteImport.update({
-  id: '/inventory',
-  path: '/inventory',
-  getParentRoute: () => DealerRoute,
+  id: '/dealer/inventory',
+  path: '/dealer/inventory',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardWishlistRoute = DashboardWishlistRouteImport.update({
   id: '/wishlist',
@@ -174,9 +174,9 @@ const CarIdRoute = CarIdRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminUsersRoute = AdminUsersRouteImport.update({
-  id: '/users',
-  path: '/users',
-  getParentRoute: () => AdminRoute,
+  id: '/admin/users',
+  path: '/admin/users',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -378,7 +378,9 @@ export interface RootRouteChildren {
   RegisterRoute: typeof RegisterRoute
   SellRoute: typeof SellRoute
   TermsRoute: typeof TermsRoute
+  AdminUsersRoute: typeof AdminUsersRoute
   CarIdRoute: typeof CarIdRoute
+  DealerInventoryRoute: typeof DealerInventoryRoute
   AdminIndexRoute: typeof AdminIndexRoute
   DealerIndexRoute: typeof DealerIndexRoute
 }
@@ -520,10 +522,10 @@ declare module '@tanstack/react-router' {
     }
     '/dealer/inventory': {
       id: '/dealer/inventory'
-      path: '/inventory'
+      path: '/dealer/inventory'
       fullPath: '/dealer/inventory'
       preLoaderRoute: typeof DealerInventoryRouteImport
-      parentRoute: typeof DealerRoute
+      parentRoute: typeof rootRouteImport
     }
     '/dashboard/wishlist': {
       id: '/dashboard/wishlist'
@@ -576,10 +578,10 @@ declare module '@tanstack/react-router' {
     }
     '/admin/users': {
       id: '/admin/users'
-      path: '/users'
+      path: '/admin/users'
       fullPath: '/admin/users'
       preLoaderRoute: typeof AdminUsersRouteImport
-      parentRoute: typeof AdminRoute
+      parentRoute: typeof rootRouteImport
     }
   }
 }
@@ -625,20 +627,12 @@ const rootRouteChildren: RootRouteChildren = {
   RegisterRoute: RegisterRoute,
   SellRoute: SellRoute,
   TermsRoute: TermsRoute,
+  AdminUsersRoute: AdminUsersRoute,
   CarIdRoute: CarIdRoute,
+  DealerInventoryRoute: DealerInventoryRoute,
   AdminIndexRoute: AdminIndexRoute,
   DealerIndexRoute: DealerIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
