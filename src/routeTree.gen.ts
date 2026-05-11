@@ -30,6 +30,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as DealerIndexRouteImport } from './routes/dealer.index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as DealerSubscriptionRouteImport } from './routes/dealer.subscription'
 import { Route as DealerLeadsRouteImport } from './routes/dealer.leads'
 import { Route as DealerInventoryRouteImport } from './routes/dealer.inventory'
 import { Route as DealerInboxRouteImport } from './routes/dealer.inbox'
@@ -149,6 +150,11 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AdminRoute,
 } as any)
+const DealerSubscriptionRoute = DealerSubscriptionRouteImport.update({
+  id: '/subscription',
+  path: '/subscription',
+  getParentRoute: () => DealerRoute,
+} as any)
 const DealerLeadsRoute = DealerLeadsRouteImport.update({
   id: '/leads',
   path: '/leads',
@@ -247,6 +253,7 @@ export interface FileRoutesByFullPath {
   '/dealer/inbox': typeof DealerInboxRoute
   '/dealer/inventory': typeof DealerInventoryRoute
   '/dealer/leads': typeof DealerLeadsRoute
+  '/dealer/subscription': typeof DealerSubscriptionRoute
   '/admin/': typeof AdminIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/dealer/': typeof DealerIndexRoute
@@ -280,6 +287,7 @@ export interface FileRoutesByTo {
   '/dealer/inbox': typeof DealerInboxRoute
   '/dealer/inventory': typeof DealerInventoryRoute
   '/dealer/leads': typeof DealerLeadsRoute
+  '/dealer/subscription': typeof DealerSubscriptionRoute
   '/admin': typeof AdminIndexRoute
   '/dashboard': typeof DashboardIndexRoute
   '/dealer': typeof DealerIndexRoute
@@ -317,6 +325,7 @@ export interface FileRoutesById {
   '/dealer/inbox': typeof DealerInboxRoute
   '/dealer/inventory': typeof DealerInventoryRoute
   '/dealer/leads': typeof DealerLeadsRoute
+  '/dealer/subscription': typeof DealerSubscriptionRoute
   '/admin/': typeof AdminIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/dealer/': typeof DealerIndexRoute
@@ -355,6 +364,7 @@ export interface FileRouteTypes {
     | '/dealer/inbox'
     | '/dealer/inventory'
     | '/dealer/leads'
+    | '/dealer/subscription'
     | '/admin/'
     | '/dashboard/'
     | '/dealer/'
@@ -388,6 +398,7 @@ export interface FileRouteTypes {
     | '/dealer/inbox'
     | '/dealer/inventory'
     | '/dealer/leads'
+    | '/dealer/subscription'
     | '/admin'
     | '/dashboard'
     | '/dealer'
@@ -424,6 +435,7 @@ export interface FileRouteTypes {
     | '/dealer/inbox'
     | '/dealer/inventory'
     | '/dealer/leads'
+    | '/dealer/subscription'
     | '/admin/'
     | '/dashboard/'
     | '/dealer/'
@@ -600,6 +612,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/dealer/subscription': {
+      id: '/dealer/subscription'
+      path: '/subscription'
+      fullPath: '/dealer/subscription'
+      preLoaderRoute: typeof DealerSubscriptionRouteImport
+      parentRoute: typeof DealerRoute
+    }
     '/dealer/leads': {
       id: '/dealer/leads'
       path: '/leads'
@@ -736,6 +755,7 @@ interface DealerRouteChildren {
   DealerInboxRoute: typeof DealerInboxRoute
   DealerInventoryRoute: typeof DealerInventoryRoute
   DealerLeadsRoute: typeof DealerLeadsRoute
+  DealerSubscriptionRoute: typeof DealerSubscriptionRoute
   DealerIndexRoute: typeof DealerIndexRoute
 }
 
@@ -745,6 +765,7 @@ const DealerRouteChildren: DealerRouteChildren = {
   DealerInboxRoute: DealerInboxRoute,
   DealerInventoryRoute: DealerInventoryRoute,
   DealerLeadsRoute: DealerLeadsRoute,
+  DealerSubscriptionRoute: DealerSubscriptionRoute,
   DealerIndexRoute: DealerIndexRoute,
 }
 
