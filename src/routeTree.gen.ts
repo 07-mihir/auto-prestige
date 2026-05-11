@@ -27,7 +27,31 @@ import { Route as AuctionsRouteImport } from './routes/auctions'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DealerIndexRouteImport } from './routes/dealer.index'
+import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as DealerSubscriptionRouteImport } from './routes/dealer.subscription'
+import { Route as DealerSettingsRouteImport } from './routes/dealer.settings'
+import { Route as DealerLeadsRouteImport } from './routes/dealer.leads'
+import { Route as DealerInventoryRouteImport } from './routes/dealer.inventory'
+import { Route as DealerInboxRouteImport } from './routes/dealer.inbox'
+import { Route as DealerAppointmentsRouteImport } from './routes/dealer.appointments'
+import { Route as DealerAnalyticsRouteImport } from './routes/dealer.analytics'
+import { Route as DashboardWishlistRouteImport } from './routes/dashboard.wishlist'
+import { Route as DashboardTestDrivesRouteImport } from './routes/dashboard.test-drives'
+import { Route as DashboardSettingsRouteImport } from './routes/dashboard.settings'
+import { Route as DashboardNotificationsRouteImport } from './routes/dashboard.notifications'
+import { Route as DashboardListingsRouteImport } from './routes/dashboard.listings'
+import { Route as DashboardInboxRouteImport } from './routes/dashboard.inbox'
 import { Route as CarIdRouteImport } from './routes/car.$id'
+import { Route as AdminUsersRouteImport } from './routes/admin.users'
+import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
+import { Route as AdminRevenueRouteImport } from './routes/admin.revenue'
+import { Route as AdminListingsRouteImport } from './routes/admin.listings'
+import { Route as AdminFraudRouteImport } from './routes/admin.fraud'
+import { Route as AdminDealersRouteImport } from './routes/admin.dealers'
+import { Route as AdminAnalyticsRouteImport } from './routes/admin.analytics'
+import { Route as AdminAdsRouteImport } from './routes/admin.ads'
 
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
@@ -119,23 +143,143 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DealerIndexRoute = DealerIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DealerRoute,
+} as any)
+const DashboardIndexRoute = DashboardIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const DealerSubscriptionRoute = DealerSubscriptionRouteImport.update({
+  id: '/subscription',
+  path: '/subscription',
+  getParentRoute: () => DealerRoute,
+} as any)
+const DealerSettingsRoute = DealerSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => DealerRoute,
+} as any)
+const DealerLeadsRoute = DealerLeadsRouteImport.update({
+  id: '/leads',
+  path: '/leads',
+  getParentRoute: () => DealerRoute,
+} as any)
+const DealerInventoryRoute = DealerInventoryRouteImport.update({
+  id: '/inventory',
+  path: '/inventory',
+  getParentRoute: () => DealerRoute,
+} as any)
+const DealerInboxRoute = DealerInboxRouteImport.update({
+  id: '/inbox',
+  path: '/inbox',
+  getParentRoute: () => DealerRoute,
+} as any)
+const DealerAppointmentsRoute = DealerAppointmentsRouteImport.update({
+  id: '/appointments',
+  path: '/appointments',
+  getParentRoute: () => DealerRoute,
+} as any)
+const DealerAnalyticsRoute = DealerAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => DealerRoute,
+} as any)
+const DashboardWishlistRoute = DashboardWishlistRouteImport.update({
+  id: '/wishlist',
+  path: '/wishlist',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardTestDrivesRoute = DashboardTestDrivesRouteImport.update({
+  id: '/test-drives',
+  path: '/test-drives',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardSettingsRoute = DashboardSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardNotificationsRoute = DashboardNotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardListingsRoute = DashboardListingsRouteImport.update({
+  id: '/listings',
+  path: '/listings',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardInboxRoute = DashboardInboxRouteImport.update({
+  id: '/inbox',
+  path: '/inbox',
+  getParentRoute: () => DashboardRoute,
+} as any)
 const CarIdRoute = CarIdRouteImport.update({
   id: '/car/$id',
   path: '/car/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminUsersRoute = AdminUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminSettingsRoute = AdminSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminRevenueRoute = AdminRevenueRouteImport.update({
+  id: '/revenue',
+  path: '/revenue',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminListingsRoute = AdminListingsRouteImport.update({
+  id: '/listings',
+  path: '/listings',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminFraudRoute = AdminFraudRouteImport.update({
+  id: '/fraud',
+  path: '/fraud',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminDealersRoute = AdminDealersRouteImport.update({
+  id: '/dealers',
+  path: '/dealers',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminAnalyticsRoute = AdminAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminAdsRoute = AdminAdsRouteImport.update({
+  id: '/ads',
+  path: '/ads',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/admin': typeof AdminRoute
+  '/admin': typeof AdminRouteWithChildren
   '/auctions': typeof AuctionsRoute
   '/blog': typeof BlogRoute
   '/buy': typeof BuyRoute
   '/compare': typeof CompareRoute
   '/contact': typeof ContactRoute
-  '/dashboard': typeof DashboardRoute
-  '/dealer': typeof DealerRoute
+  '/dashboard': typeof DashboardRouteWithChildren
+  '/dealer': typeof DealerRouteWithChildren
   '/dealers': typeof DealersRoute
   '/faq': typeof FaqRoute
   '/login': typeof LoginRoute
@@ -144,19 +288,40 @@ export interface FileRoutesByFullPath {
   '/register': typeof RegisterRoute
   '/sell': typeof SellRoute
   '/terms': typeof TermsRoute
+  '/admin/ads': typeof AdminAdsRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/dealers': typeof AdminDealersRoute
+  '/admin/fraud': typeof AdminFraudRoute
+  '/admin/listings': typeof AdminListingsRoute
+  '/admin/revenue': typeof AdminRevenueRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/users': typeof AdminUsersRoute
   '/car/$id': typeof CarIdRoute
+  '/dashboard/inbox': typeof DashboardInboxRoute
+  '/dashboard/listings': typeof DashboardListingsRoute
+  '/dashboard/notifications': typeof DashboardNotificationsRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
+  '/dashboard/test-drives': typeof DashboardTestDrivesRoute
+  '/dashboard/wishlist': typeof DashboardWishlistRoute
+  '/dealer/analytics': typeof DealerAnalyticsRoute
+  '/dealer/appointments': typeof DealerAppointmentsRoute
+  '/dealer/inbox': typeof DealerInboxRoute
+  '/dealer/inventory': typeof DealerInventoryRoute
+  '/dealer/leads': typeof DealerLeadsRoute
+  '/dealer/settings': typeof DealerSettingsRoute
+  '/dealer/subscription': typeof DealerSubscriptionRoute
+  '/admin/': typeof AdminIndexRoute
+  '/dashboard/': typeof DashboardIndexRoute
+  '/dealer/': typeof DealerIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/admin': typeof AdminRoute
   '/auctions': typeof AuctionsRoute
   '/blog': typeof BlogRoute
   '/buy': typeof BuyRoute
   '/compare': typeof CompareRoute
   '/contact': typeof ContactRoute
-  '/dashboard': typeof DashboardRoute
-  '/dealer': typeof DealerRoute
   '/dealers': typeof DealersRoute
   '/faq': typeof FaqRoute
   '/login': typeof LoginRoute
@@ -165,20 +330,44 @@ export interface FileRoutesByTo {
   '/register': typeof RegisterRoute
   '/sell': typeof SellRoute
   '/terms': typeof TermsRoute
+  '/admin/ads': typeof AdminAdsRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/dealers': typeof AdminDealersRoute
+  '/admin/fraud': typeof AdminFraudRoute
+  '/admin/listings': typeof AdminListingsRoute
+  '/admin/revenue': typeof AdminRevenueRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/users': typeof AdminUsersRoute
   '/car/$id': typeof CarIdRoute
+  '/dashboard/inbox': typeof DashboardInboxRoute
+  '/dashboard/listings': typeof DashboardListingsRoute
+  '/dashboard/notifications': typeof DashboardNotificationsRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
+  '/dashboard/test-drives': typeof DashboardTestDrivesRoute
+  '/dashboard/wishlist': typeof DashboardWishlistRoute
+  '/dealer/analytics': typeof DealerAnalyticsRoute
+  '/dealer/appointments': typeof DealerAppointmentsRoute
+  '/dealer/inbox': typeof DealerInboxRoute
+  '/dealer/inventory': typeof DealerInventoryRoute
+  '/dealer/leads': typeof DealerLeadsRoute
+  '/dealer/settings': typeof DealerSettingsRoute
+  '/dealer/subscription': typeof DealerSubscriptionRoute
+  '/admin': typeof AdminIndexRoute
+  '/dashboard': typeof DashboardIndexRoute
+  '/dealer': typeof DealerIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/admin': typeof AdminRoute
+  '/admin': typeof AdminRouteWithChildren
   '/auctions': typeof AuctionsRoute
   '/blog': typeof BlogRoute
   '/buy': typeof BuyRoute
   '/compare': typeof CompareRoute
   '/contact': typeof ContactRoute
-  '/dashboard': typeof DashboardRoute
-  '/dealer': typeof DealerRoute
+  '/dashboard': typeof DashboardRouteWithChildren
+  '/dealer': typeof DealerRouteWithChildren
   '/dealers': typeof DealersRoute
   '/faq': typeof FaqRoute
   '/login': typeof LoginRoute
@@ -187,7 +376,31 @@ export interface FileRoutesById {
   '/register': typeof RegisterRoute
   '/sell': typeof SellRoute
   '/terms': typeof TermsRoute
+  '/admin/ads': typeof AdminAdsRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/dealers': typeof AdminDealersRoute
+  '/admin/fraud': typeof AdminFraudRoute
+  '/admin/listings': typeof AdminListingsRoute
+  '/admin/revenue': typeof AdminRevenueRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/users': typeof AdminUsersRoute
   '/car/$id': typeof CarIdRoute
+  '/dashboard/inbox': typeof DashboardInboxRoute
+  '/dashboard/listings': typeof DashboardListingsRoute
+  '/dashboard/notifications': typeof DashboardNotificationsRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
+  '/dashboard/test-drives': typeof DashboardTestDrivesRoute
+  '/dashboard/wishlist': typeof DashboardWishlistRoute
+  '/dealer/analytics': typeof DealerAnalyticsRoute
+  '/dealer/appointments': typeof DealerAppointmentsRoute
+  '/dealer/inbox': typeof DealerInboxRoute
+  '/dealer/inventory': typeof DealerInventoryRoute
+  '/dealer/leads': typeof DealerLeadsRoute
+  '/dealer/settings': typeof DealerSettingsRoute
+  '/dealer/subscription': typeof DealerSubscriptionRoute
+  '/admin/': typeof AdminIndexRoute
+  '/dashboard/': typeof DashboardIndexRoute
+  '/dealer/': typeof DealerIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -210,19 +423,40 @@ export interface FileRouteTypes {
     | '/register'
     | '/sell'
     | '/terms'
+    | '/admin/ads'
+    | '/admin/analytics'
+    | '/admin/dealers'
+    | '/admin/fraud'
+    | '/admin/listings'
+    | '/admin/revenue'
+    | '/admin/settings'
+    | '/admin/users'
     | '/car/$id'
+    | '/dashboard/inbox'
+    | '/dashboard/listings'
+    | '/dashboard/notifications'
+    | '/dashboard/settings'
+    | '/dashboard/test-drives'
+    | '/dashboard/wishlist'
+    | '/dealer/analytics'
+    | '/dealer/appointments'
+    | '/dealer/inbox'
+    | '/dealer/inventory'
+    | '/dealer/leads'
+    | '/dealer/settings'
+    | '/dealer/subscription'
+    | '/admin/'
+    | '/dashboard/'
+    | '/dealer/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
-    | '/admin'
     | '/auctions'
     | '/blog'
     | '/buy'
     | '/compare'
     | '/contact'
-    | '/dashboard'
-    | '/dealer'
     | '/dealers'
     | '/faq'
     | '/login'
@@ -231,7 +465,31 @@ export interface FileRouteTypes {
     | '/register'
     | '/sell'
     | '/terms'
+    | '/admin/ads'
+    | '/admin/analytics'
+    | '/admin/dealers'
+    | '/admin/fraud'
+    | '/admin/listings'
+    | '/admin/revenue'
+    | '/admin/settings'
+    | '/admin/users'
     | '/car/$id'
+    | '/dashboard/inbox'
+    | '/dashboard/listings'
+    | '/dashboard/notifications'
+    | '/dashboard/settings'
+    | '/dashboard/test-drives'
+    | '/dashboard/wishlist'
+    | '/dealer/analytics'
+    | '/dealer/appointments'
+    | '/dealer/inbox'
+    | '/dealer/inventory'
+    | '/dealer/leads'
+    | '/dealer/settings'
+    | '/dealer/subscription'
+    | '/admin'
+    | '/dashboard'
+    | '/dealer'
   id:
     | '__root__'
     | '/'
@@ -252,20 +510,44 @@ export interface FileRouteTypes {
     | '/register'
     | '/sell'
     | '/terms'
+    | '/admin/ads'
+    | '/admin/analytics'
+    | '/admin/dealers'
+    | '/admin/fraud'
+    | '/admin/listings'
+    | '/admin/revenue'
+    | '/admin/settings'
+    | '/admin/users'
     | '/car/$id'
+    | '/dashboard/inbox'
+    | '/dashboard/listings'
+    | '/dashboard/notifications'
+    | '/dashboard/settings'
+    | '/dashboard/test-drives'
+    | '/dashboard/wishlist'
+    | '/dealer/analytics'
+    | '/dealer/appointments'
+    | '/dealer/inbox'
+    | '/dealer/inventory'
+    | '/dealer/leads'
+    | '/dealer/settings'
+    | '/dealer/subscription'
+    | '/admin/'
+    | '/dashboard/'
+    | '/dealer/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
-  AdminRoute: typeof AdminRoute
+  AdminRoute: typeof AdminRouteWithChildren
   AuctionsRoute: typeof AuctionsRoute
   BlogRoute: typeof BlogRoute
   BuyRoute: typeof BuyRoute
   CompareRoute: typeof CompareRoute
   ContactRoute: typeof ContactRoute
-  DashboardRoute: typeof DashboardRoute
-  DealerRoute: typeof DealerRoute
+  DashboardRoute: typeof DashboardRouteWithChildren
+  DealerRoute: typeof DealerRouteWithChildren
   DealersRoute: typeof DealersRoute
   FaqRoute: typeof FaqRoute
   LoginRoute: typeof LoginRoute
@@ -405,6 +687,118 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dealer/': {
+      id: '/dealer/'
+      path: '/'
+      fullPath: '/dealer/'
+      preLoaderRoute: typeof DealerIndexRouteImport
+      parentRoute: typeof DealerRoute
+    }
+    '/dashboard/': {
+      id: '/dashboard/'
+      path: '/'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof DashboardIndexRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/dealer/subscription': {
+      id: '/dealer/subscription'
+      path: '/subscription'
+      fullPath: '/dealer/subscription'
+      preLoaderRoute: typeof DealerSubscriptionRouteImport
+      parentRoute: typeof DealerRoute
+    }
+    '/dealer/settings': {
+      id: '/dealer/settings'
+      path: '/settings'
+      fullPath: '/dealer/settings'
+      preLoaderRoute: typeof DealerSettingsRouteImport
+      parentRoute: typeof DealerRoute
+    }
+    '/dealer/leads': {
+      id: '/dealer/leads'
+      path: '/leads'
+      fullPath: '/dealer/leads'
+      preLoaderRoute: typeof DealerLeadsRouteImport
+      parentRoute: typeof DealerRoute
+    }
+    '/dealer/inventory': {
+      id: '/dealer/inventory'
+      path: '/inventory'
+      fullPath: '/dealer/inventory'
+      preLoaderRoute: typeof DealerInventoryRouteImport
+      parentRoute: typeof DealerRoute
+    }
+    '/dealer/inbox': {
+      id: '/dealer/inbox'
+      path: '/inbox'
+      fullPath: '/dealer/inbox'
+      preLoaderRoute: typeof DealerInboxRouteImport
+      parentRoute: typeof DealerRoute
+    }
+    '/dealer/appointments': {
+      id: '/dealer/appointments'
+      path: '/appointments'
+      fullPath: '/dealer/appointments'
+      preLoaderRoute: typeof DealerAppointmentsRouteImport
+      parentRoute: typeof DealerRoute
+    }
+    '/dealer/analytics': {
+      id: '/dealer/analytics'
+      path: '/analytics'
+      fullPath: '/dealer/analytics'
+      preLoaderRoute: typeof DealerAnalyticsRouteImport
+      parentRoute: typeof DealerRoute
+    }
+    '/dashboard/wishlist': {
+      id: '/dashboard/wishlist'
+      path: '/wishlist'
+      fullPath: '/dashboard/wishlist'
+      preLoaderRoute: typeof DashboardWishlistRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/test-drives': {
+      id: '/dashboard/test-drives'
+      path: '/test-drives'
+      fullPath: '/dashboard/test-drives'
+      preLoaderRoute: typeof DashboardTestDrivesRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/settings': {
+      id: '/dashboard/settings'
+      path: '/settings'
+      fullPath: '/dashboard/settings'
+      preLoaderRoute: typeof DashboardSettingsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/notifications': {
+      id: '/dashboard/notifications'
+      path: '/notifications'
+      fullPath: '/dashboard/notifications'
+      preLoaderRoute: typeof DashboardNotificationsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/listings': {
+      id: '/dashboard/listings'
+      path: '/listings'
+      fullPath: '/dashboard/listings'
+      preLoaderRoute: typeof DashboardListingsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/inbox': {
+      id: '/dashboard/inbox'
+      path: '/inbox'
+      fullPath: '/dashboard/inbox'
+      preLoaderRoute: typeof DashboardInboxRouteImport
+      parentRoute: typeof DashboardRoute
+    }
     '/car/$id': {
       id: '/car/$id'
       path: '/car/$id'
@@ -412,20 +806,151 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CarIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/users': {
+      id: '/admin/users'
+      path: '/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AdminUsersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/settings': {
+      id: '/admin/settings'
+      path: '/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AdminSettingsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/revenue': {
+      id: '/admin/revenue'
+      path: '/revenue'
+      fullPath: '/admin/revenue'
+      preLoaderRoute: typeof AdminRevenueRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/listings': {
+      id: '/admin/listings'
+      path: '/listings'
+      fullPath: '/admin/listings'
+      preLoaderRoute: typeof AdminListingsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/fraud': {
+      id: '/admin/fraud'
+      path: '/fraud'
+      fullPath: '/admin/fraud'
+      preLoaderRoute: typeof AdminFraudRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/dealers': {
+      id: '/admin/dealers'
+      path: '/dealers'
+      fullPath: '/admin/dealers'
+      preLoaderRoute: typeof AdminDealersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/analytics': {
+      id: '/admin/analytics'
+      path: '/analytics'
+      fullPath: '/admin/analytics'
+      preLoaderRoute: typeof AdminAnalyticsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/ads': {
+      id: '/admin/ads'
+      path: '/ads'
+      fullPath: '/admin/ads'
+      preLoaderRoute: typeof AdminAdsRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
+
+interface AdminRouteChildren {
+  AdminAdsRoute: typeof AdminAdsRoute
+  AdminAnalyticsRoute: typeof AdminAnalyticsRoute
+  AdminDealersRoute: typeof AdminDealersRoute
+  AdminFraudRoute: typeof AdminFraudRoute
+  AdminListingsRoute: typeof AdminListingsRoute
+  AdminRevenueRoute: typeof AdminRevenueRoute
+  AdminSettingsRoute: typeof AdminSettingsRoute
+  AdminUsersRoute: typeof AdminUsersRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminAdsRoute: AdminAdsRoute,
+  AdminAnalyticsRoute: AdminAnalyticsRoute,
+  AdminDealersRoute: AdminDealersRoute,
+  AdminFraudRoute: AdminFraudRoute,
+  AdminListingsRoute: AdminListingsRoute,
+  AdminRevenueRoute: AdminRevenueRoute,
+  AdminSettingsRoute: AdminSettingsRoute,
+  AdminUsersRoute: AdminUsersRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
+interface DashboardRouteChildren {
+  DashboardInboxRoute: typeof DashboardInboxRoute
+  DashboardListingsRoute: typeof DashboardListingsRoute
+  DashboardNotificationsRoute: typeof DashboardNotificationsRoute
+  DashboardSettingsRoute: typeof DashboardSettingsRoute
+  DashboardTestDrivesRoute: typeof DashboardTestDrivesRoute
+  DashboardWishlistRoute: typeof DashboardWishlistRoute
+  DashboardIndexRoute: typeof DashboardIndexRoute
+}
+
+const DashboardRouteChildren: DashboardRouteChildren = {
+  DashboardInboxRoute: DashboardInboxRoute,
+  DashboardListingsRoute: DashboardListingsRoute,
+  DashboardNotificationsRoute: DashboardNotificationsRoute,
+  DashboardSettingsRoute: DashboardSettingsRoute,
+  DashboardTestDrivesRoute: DashboardTestDrivesRoute,
+  DashboardWishlistRoute: DashboardWishlistRoute,
+  DashboardIndexRoute: DashboardIndexRoute,
+}
+
+const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
+  DashboardRouteChildren,
+)
+
+interface DealerRouteChildren {
+  DealerAnalyticsRoute: typeof DealerAnalyticsRoute
+  DealerAppointmentsRoute: typeof DealerAppointmentsRoute
+  DealerInboxRoute: typeof DealerInboxRoute
+  DealerInventoryRoute: typeof DealerInventoryRoute
+  DealerLeadsRoute: typeof DealerLeadsRoute
+  DealerSettingsRoute: typeof DealerSettingsRoute
+  DealerSubscriptionRoute: typeof DealerSubscriptionRoute
+  DealerIndexRoute: typeof DealerIndexRoute
+}
+
+const DealerRouteChildren: DealerRouteChildren = {
+  DealerAnalyticsRoute: DealerAnalyticsRoute,
+  DealerAppointmentsRoute: DealerAppointmentsRoute,
+  DealerInboxRoute: DealerInboxRoute,
+  DealerInventoryRoute: DealerInventoryRoute,
+  DealerLeadsRoute: DealerLeadsRoute,
+  DealerSettingsRoute: DealerSettingsRoute,
+  DealerSubscriptionRoute: DealerSubscriptionRoute,
+  DealerIndexRoute: DealerIndexRoute,
+}
+
+const DealerRouteWithChildren =
+  DealerRoute._addFileChildren(DealerRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  AdminRoute: AdminRoute,
+  AdminRoute: AdminRouteWithChildren,
   AuctionsRoute: AuctionsRoute,
   BlogRoute: BlogRoute,
   BuyRoute: BuyRoute,
   CompareRoute: CompareRoute,
   ContactRoute: ContactRoute,
-  DashboardRoute: DashboardRoute,
-  DealerRoute: DealerRoute,
+  DashboardRoute: DashboardRouteWithChildren,
+  DealerRoute: DealerRouteWithChildren,
   DealersRoute: DealersRoute,
   FaqRoute: FaqRoute,
   LoginRoute: LoginRoute,
@@ -439,13 +964,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
