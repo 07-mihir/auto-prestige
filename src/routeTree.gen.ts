@@ -45,6 +45,8 @@ import { Route as DashboardListingsRouteImport } from './routes/dashboard.listin
 import { Route as DashboardInboxRouteImport } from './routes/dashboard.inbox'
 import { Route as CarIdRouteImport } from './routes/car.$id'
 import { Route as AdminUsersRouteImport } from './routes/admin.users'
+import { Route as AdminListingsRouteImport } from './routes/admin.listings'
+import { Route as AdminFraudRouteImport } from './routes/admin.fraud'
 import { Route as AdminDealersRouteImport } from './routes/admin.dealers'
 
 const TermsRoute = TermsRouteImport.update({
@@ -227,6 +229,16 @@ const AdminUsersRoute = AdminUsersRouteImport.update({
   path: '/users',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminListingsRoute = AdminListingsRouteImport.update({
+  id: '/listings',
+  path: '/listings',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminFraudRoute = AdminFraudRouteImport.update({
+  id: '/fraud',
+  path: '/fraud',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminDealersRoute = AdminDealersRouteImport.update({
   id: '/dealers',
   path: '/dealers',
@@ -253,6 +265,8 @@ export interface FileRoutesByFullPath {
   '/sell': typeof SellRoute
   '/terms': typeof TermsRoute
   '/admin/dealers': typeof AdminDealersRoute
+  '/admin/fraud': typeof AdminFraudRoute
+  '/admin/listings': typeof AdminListingsRoute
   '/admin/users': typeof AdminUsersRoute
   '/car/$id': typeof CarIdRoute
   '/dashboard/inbox': typeof DashboardInboxRoute
@@ -289,6 +303,8 @@ export interface FileRoutesByTo {
   '/sell': typeof SellRoute
   '/terms': typeof TermsRoute
   '/admin/dealers': typeof AdminDealersRoute
+  '/admin/fraud': typeof AdminFraudRoute
+  '/admin/listings': typeof AdminListingsRoute
   '/admin/users': typeof AdminUsersRoute
   '/car/$id': typeof CarIdRoute
   '/dashboard/inbox': typeof DashboardInboxRoute
@@ -329,6 +345,8 @@ export interface FileRoutesById {
   '/sell': typeof SellRoute
   '/terms': typeof TermsRoute
   '/admin/dealers': typeof AdminDealersRoute
+  '/admin/fraud': typeof AdminFraudRoute
+  '/admin/listings': typeof AdminListingsRoute
   '/admin/users': typeof AdminUsersRoute
   '/car/$id': typeof CarIdRoute
   '/dashboard/inbox': typeof DashboardInboxRoute
@@ -370,6 +388,8 @@ export interface FileRouteTypes {
     | '/sell'
     | '/terms'
     | '/admin/dealers'
+    | '/admin/fraud'
+    | '/admin/listings'
     | '/admin/users'
     | '/car/$id'
     | '/dashboard/inbox'
@@ -406,6 +426,8 @@ export interface FileRouteTypes {
     | '/sell'
     | '/terms'
     | '/admin/dealers'
+    | '/admin/fraud'
+    | '/admin/listings'
     | '/admin/users'
     | '/car/$id'
     | '/dashboard/inbox'
@@ -445,6 +467,8 @@ export interface FileRouteTypes {
     | '/sell'
     | '/terms'
     | '/admin/dealers'
+    | '/admin/fraud'
+    | '/admin/listings'
     | '/admin/users'
     | '/car/$id'
     | '/dashboard/inbox'
@@ -741,6 +765,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminUsersRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/listings': {
+      id: '/admin/listings'
+      path: '/listings'
+      fullPath: '/admin/listings'
+      preLoaderRoute: typeof AdminListingsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/fraud': {
+      id: '/admin/fraud'
+      path: '/fraud'
+      fullPath: '/admin/fraud'
+      preLoaderRoute: typeof AdminFraudRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/dealers': {
       id: '/admin/dealers'
       path: '/dealers'
@@ -753,12 +791,16 @@ declare module '@tanstack/react-router' {
 
 interface AdminRouteChildren {
   AdminDealersRoute: typeof AdminDealersRoute
+  AdminFraudRoute: typeof AdminFraudRoute
+  AdminListingsRoute: typeof AdminListingsRoute
   AdminUsersRoute: typeof AdminUsersRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
   AdminDealersRoute: AdminDealersRoute,
+  AdminFraudRoute: AdminFraudRoute,
+  AdminListingsRoute: AdminListingsRoute,
   AdminUsersRoute: AdminUsersRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
@@ -838,3 +880,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
