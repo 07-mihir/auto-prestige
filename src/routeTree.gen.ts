@@ -28,6 +28,7 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardWishlistRouteImport } from './routes/dashboard.wishlist'
+import { Route as DashboardListingsRouteImport } from './routes/dashboard.listings'
 import { Route as CarIdRouteImport } from './routes/car.$id'
 
 const TermsRoute = TermsRouteImport.update({
@@ -125,6 +126,11 @@ const DashboardWishlistRoute = DashboardWishlistRouteImport.update({
   path: '/wishlist',
   getParentRoute: () => DashboardRoute,
 } as any)
+const DashboardListingsRoute = DashboardListingsRouteImport.update({
+  id: '/listings',
+  path: '/listings',
+  getParentRoute: () => DashboardRoute,
+} as any)
 const CarIdRoute = CarIdRouteImport.update({
   id: '/car/$id',
   path: '/car/$id',
@@ -151,6 +157,7 @@ export interface FileRoutesByFullPath {
   '/sell': typeof SellRoute
   '/terms': typeof TermsRoute
   '/car/$id': typeof CarIdRoute
+  '/dashboard/listings': typeof DashboardListingsRoute
   '/dashboard/wishlist': typeof DashboardWishlistRoute
 }
 export interface FileRoutesByTo {
@@ -173,6 +180,7 @@ export interface FileRoutesByTo {
   '/sell': typeof SellRoute
   '/terms': typeof TermsRoute
   '/car/$id': typeof CarIdRoute
+  '/dashboard/listings': typeof DashboardListingsRoute
   '/dashboard/wishlist': typeof DashboardWishlistRoute
 }
 export interface FileRoutesById {
@@ -196,6 +204,7 @@ export interface FileRoutesById {
   '/sell': typeof SellRoute
   '/terms': typeof TermsRoute
   '/car/$id': typeof CarIdRoute
+  '/dashboard/listings': typeof DashboardListingsRoute
   '/dashboard/wishlist': typeof DashboardWishlistRoute
 }
 export interface FileRouteTypes {
@@ -220,6 +229,7 @@ export interface FileRouteTypes {
     | '/sell'
     | '/terms'
     | '/car/$id'
+    | '/dashboard/listings'
     | '/dashboard/wishlist'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -242,6 +252,7 @@ export interface FileRouteTypes {
     | '/sell'
     | '/terms'
     | '/car/$id'
+    | '/dashboard/listings'
     | '/dashboard/wishlist'
   id:
     | '__root__'
@@ -264,6 +275,7 @@ export interface FileRouteTypes {
     | '/sell'
     | '/terms'
     | '/car/$id'
+    | '/dashboard/listings'
     | '/dashboard/wishlist'
   fileRoutesById: FileRoutesById
 }
@@ -424,6 +436,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardWishlistRouteImport
       parentRoute: typeof DashboardRoute
     }
+    '/dashboard/listings': {
+      id: '/dashboard/listings'
+      path: '/listings'
+      fullPath: '/dashboard/listings'
+      preLoaderRoute: typeof DashboardListingsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
     '/car/$id': {
       id: '/car/$id'
       path: '/car/$id'
@@ -435,10 +454,12 @@ declare module '@tanstack/react-router' {
 }
 
 interface DashboardRouteChildren {
+  DashboardListingsRoute: typeof DashboardListingsRoute
   DashboardWishlistRoute: typeof DashboardWishlistRoute
 }
 
 const DashboardRouteChildren: DashboardRouteChildren = {
+  DashboardListingsRoute: DashboardListingsRoute,
   DashboardWishlistRoute: DashboardWishlistRoute,
 }
 
@@ -470,3 +491,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
