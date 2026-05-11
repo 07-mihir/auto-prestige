@@ -5,7 +5,7 @@ import { cars, formatPrice } from "@/lib/cars-data";
 import { CarCard } from "@/components/site/car-card";
 import { Button } from "@/components/ui/button";
 
-export const Route = createFileRoute("/dashboard")({
+export const Route = createFileRoute("/dashboard/")({
   head: () => ({ meta: [{ title: "My dashboard — DriveX" }] }),
   component: UserDashboard,
 });

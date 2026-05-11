@@ -35,6 +35,7 @@ import { Route as DashboardNotificationsRouteImport } from './routes/dashboard.n
 import { Route as DashboardListingsRouteImport } from './routes/dashboard.listings'
 import { Route as DashboardInboxRouteImport } from './routes/dashboard.inbox'
 import { Route as CarIdRouteImport } from './routes/car.$id'
+import { Route as AdminUsersRouteImport } from './routes/admin.users'
 
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
@@ -166,11 +167,16 @@ const CarIdRoute = CarIdRouteImport.update({
   path: '/car/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminUsersRoute = AdminUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/admin': typeof AdminRoute
+  '/admin': typeof AdminRouteWithChildren
   '/auctions': typeof AuctionsRoute
   '/blog': typeof BlogRoute
   '/buy': typeof BuyRoute
@@ -186,6 +192,7 @@ export interface FileRoutesByFullPath {
   '/register': typeof RegisterRoute
   '/sell': typeof SellRoute
   '/terms': typeof TermsRoute
+  '/admin/users': typeof AdminUsersRoute
   '/car/$id': typeof CarIdRoute
   '/dashboard/inbox': typeof DashboardInboxRoute
   '/dashboard/listings': typeof DashboardListingsRoute
@@ -198,7 +205,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/admin': typeof AdminRoute
+  '/admin': typeof AdminRouteWithChildren
   '/auctions': typeof AuctionsRoute
   '/blog': typeof BlogRoute
   '/buy': typeof BuyRoute
@@ -214,6 +221,7 @@ export interface FileRoutesByTo {
   '/register': typeof RegisterRoute
   '/sell': typeof SellRoute
   '/terms': typeof TermsRoute
+  '/admin/users': typeof AdminUsersRoute
   '/car/$id': typeof CarIdRoute
   '/dashboard/inbox': typeof DashboardInboxRoute
   '/dashboard/listings': typeof DashboardListingsRoute
@@ -227,7 +235,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/admin': typeof AdminRoute
+  '/admin': typeof AdminRouteWithChildren
   '/auctions': typeof AuctionsRoute
   '/blog': typeof BlogRoute
   '/buy': typeof BuyRoute
@@ -243,6 +251,7 @@ export interface FileRoutesById {
   '/register': typeof RegisterRoute
   '/sell': typeof SellRoute
   '/terms': typeof TermsRoute
+  '/admin/users': typeof AdminUsersRoute
   '/car/$id': typeof CarIdRoute
   '/dashboard/inbox': typeof DashboardInboxRoute
   '/dashboard/listings': typeof DashboardListingsRoute
@@ -273,6 +282,7 @@ export interface FileRouteTypes {
     | '/register'
     | '/sell'
     | '/terms'
+    | '/admin/users'
     | '/car/$id'
     | '/dashboard/inbox'
     | '/dashboard/listings'
@@ -301,6 +311,7 @@ export interface FileRouteTypes {
     | '/register'
     | '/sell'
     | '/terms'
+    | '/admin/users'
     | '/car/$id'
     | '/dashboard/inbox'
     | '/dashboard/listings'
@@ -329,6 +340,7 @@ export interface FileRouteTypes {
     | '/register'
     | '/sell'
     | '/terms'
+    | '/admin/users'
     | '/car/$id'
     | '/dashboard/inbox'
     | '/dashboard/listings'
@@ -342,7 +354,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
-  AdminRoute: typeof AdminRoute
+  AdminRoute: typeof AdminRouteWithChildren
   AuctionsRoute: typeof AuctionsRoute
   BlogRoute: typeof BlogRoute
   BuyRoute: typeof BuyRoute
@@ -545,8 +557,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CarIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/users': {
+      id: '/admin/users'
+      path: '/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AdminUsersRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
+
+interface AdminRouteChildren {
+  AdminUsersRoute: typeof AdminUsersRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminUsersRoute: AdminUsersRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
 interface DashboardRouteChildren {
   DashboardInboxRoute: typeof DashboardInboxRoute
@@ -584,7 +613,7 @@ const DealerRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  AdminRoute: AdminRoute,
+  AdminRoute: AdminRouteWithChildren,
   AuctionsRoute: AuctionsRoute,
   BlogRoute: BlogRoute,
   BuyRoute: BuyRoute,
