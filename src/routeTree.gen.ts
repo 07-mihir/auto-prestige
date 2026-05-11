@@ -24,6 +24,7 @@ import { Route as CompareRouteImport } from './routes/compare'
 import { Route as BuyRouteImport } from './routes/buy'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AuctionsRouteImport } from './routes/auctions'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DealerIndexRouteImport } from './routes/dealer.index'
@@ -114,6 +115,11 @@ const AuctionsRoute = AuctionsRouteImport.update({
   path: '/auctions',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -135,9 +141,9 @@ const DashboardIndexRoute = DashboardIndexRouteImport.update({
   getParentRoute: () => DashboardRoute,
 } as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
-  id: '/admin/',
-  path: '/admin/',
-  getParentRoute: () => rootRouteImport,
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
 } as any)
 const DealerInventoryRoute = DealerInventoryRouteImport.update({
   id: '/inventory',
@@ -188,6 +194,7 @@ const AdminUsersRoute = AdminUsersRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/admin': typeof AdminRouteWithChildren
   '/auctions': typeof AuctionsRoute
   '/blog': typeof BlogRoute
   '/buy': typeof BuyRoute
@@ -249,6 +256,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/admin': typeof AdminRouteWithChildren
   '/auctions': typeof AuctionsRoute
   '/blog': typeof BlogRoute
   '/buy': typeof BuyRoute
@@ -282,6 +290,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/admin'
     | '/auctions'
     | '/blog'
     | '/buy'
@@ -342,6 +351,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/admin'
     | '/auctions'
     | '/blog'
     | '/buy'
@@ -374,6 +384,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AdminRoute: typeof AdminRouteWithChildren
   AuctionsRoute: typeof AuctionsRoute
   BlogRoute: typeof BlogRoute
   BuyRoute: typeof BuyRoute
@@ -390,7 +401,6 @@ export interface RootRouteChildren {
   SellRoute: typeof SellRoute
   TermsRoute: typeof TermsRoute
   CarIdRoute: typeof CarIdRoute
-  AdminIndexRoute: typeof AdminIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -500,6 +510,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuctionsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -530,10 +547,10 @@ declare module '@tanstack/react-router' {
     }
     '/admin/': {
       id: '/admin/'
-      path: '/admin'
+      path: '/'
       fullPath: '/admin/'
       preLoaderRoute: typeof AdminIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AdminRoute
     }
     '/dealer/inventory': {
       id: '/dealer/inventory'
@@ -601,6 +618,18 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AdminRouteChildren {
+  AdminUsersRoute: typeof AdminUsersRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminUsersRoute: AdminUsersRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
 interface DashboardRouteChildren {
   DashboardInboxRoute: typeof DashboardInboxRoute
   DashboardListingsRoute: typeof DashboardListingsRoute
@@ -641,6 +670,7 @@ const DealerRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AdminRoute: AdminRouteWithChildren,
   AuctionsRoute: AuctionsRoute,
   BlogRoute: BlogRoute,
   BuyRoute: BuyRoute,
@@ -657,7 +687,6 @@ const rootRouteChildren: RootRouteChildren = {
   SellRoute: SellRoute,
   TermsRoute: TermsRoute,
   CarIdRoute: CarIdRoute,
-  AdminIndexRoute: AdminIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
