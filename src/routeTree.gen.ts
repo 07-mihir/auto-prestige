@@ -17,6 +17,7 @@ import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as DealersRouteImport } from './routes/dealers'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CompareRouteImport } from './routes/compare'
 import { Route as BuyRouteImport } from './routes/buy'
@@ -77,6 +78,11 @@ const DealersRoute = DealersRouteImport.update({
   path: '/dealers',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
@@ -118,9 +124,9 @@ const DealerIndexRoute = DealerIndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardIndexRoute = DashboardIndexRouteImport.update({
-  id: '/dashboard/',
-  path: '/dashboard/',
-  getParentRoute: () => rootRouteImport,
+  id: '/',
+  path: '/',
+  getParentRoute: () => DashboardRoute,
 } as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/admin/',
@@ -181,6 +187,7 @@ export interface FileRoutesByFullPath {
   '/buy': typeof BuyRoute
   '/compare': typeof CompareRoute
   '/contact': typeof ContactRoute
+  '/dashboard': typeof DashboardRouteWithChildren
   '/dealers': typeof DealersRoute
   '/faq': typeof FaqRoute
   '/login': typeof LoginRoute
@@ -240,6 +247,7 @@ export interface FileRoutesById {
   '/buy': typeof BuyRoute
   '/compare': typeof CompareRoute
   '/contact': typeof ContactRoute
+  '/dashboard': typeof DashboardRouteWithChildren
   '/dealers': typeof DealersRoute
   '/faq': typeof FaqRoute
   '/login': typeof LoginRoute
@@ -271,6 +279,7 @@ export interface FileRouteTypes {
     | '/buy'
     | '/compare'
     | '/contact'
+    | '/dashboard'
     | '/dealers'
     | '/faq'
     | '/login'
@@ -329,6 +338,7 @@ export interface FileRouteTypes {
     | '/buy'
     | '/compare'
     | '/contact'
+    | '/dashboard'
     | '/dealers'
     | '/faq'
     | '/login'
@@ -359,6 +369,7 @@ export interface RootRouteChildren {
   BuyRoute: typeof BuyRoute
   CompareRoute: typeof CompareRoute
   ContactRoute: typeof ContactRoute
+  DashboardRoute: typeof DashboardRouteWithChildren
   DealersRoute: typeof DealersRoute
   FaqRoute: typeof FaqRoute
   LoginRoute: typeof LoginRoute
@@ -369,7 +380,6 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   CarIdRoute: typeof CarIdRoute
   AdminIndexRoute: typeof AdminIndexRoute
-  DashboardIndexRoute: typeof DashboardIndexRoute
   DealerIndexRoute: typeof DealerIndexRoute
 }
 
@@ -431,6 +441,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DealersRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contact': {
       id: '/contact'
       path: '/contact'
@@ -489,10 +506,10 @@ declare module '@tanstack/react-router' {
     }
     '/dashboard/': {
       id: '/dashboard/'
-      path: '/dashboard'
+      path: '/'
       fullPath: '/dashboard/'
       preLoaderRoute: typeof DashboardIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof DashboardRoute
     }
     '/admin/': {
       id: '/admin/'
@@ -567,6 +584,30 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface DashboardRouteChildren {
+  DashboardInboxRoute: typeof DashboardInboxRoute
+  DashboardListingsRoute: typeof DashboardListingsRoute
+  DashboardNotificationsRoute: typeof DashboardNotificationsRoute
+  DashboardSettingsRoute: typeof DashboardSettingsRoute
+  DashboardTestDrivesRoute: typeof DashboardTestDrivesRoute
+  DashboardWishlistRoute: typeof DashboardWishlistRoute
+  DashboardIndexRoute: typeof DashboardIndexRoute
+}
+
+const DashboardRouteChildren: DashboardRouteChildren = {
+  DashboardInboxRoute: DashboardInboxRoute,
+  DashboardListingsRoute: DashboardListingsRoute,
+  DashboardNotificationsRoute: DashboardNotificationsRoute,
+  DashboardSettingsRoute: DashboardSettingsRoute,
+  DashboardTestDrivesRoute: DashboardTestDrivesRoute,
+  DashboardWishlistRoute: DashboardWishlistRoute,
+  DashboardIndexRoute: DashboardIndexRoute,
+}
+
+const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
+  DashboardRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
@@ -575,6 +616,7 @@ const rootRouteChildren: RootRouteChildren = {
   BuyRoute: BuyRoute,
   CompareRoute: CompareRoute,
   ContactRoute: ContactRoute,
+  DashboardRoute: DashboardRouteWithChildren,
   DealersRoute: DealersRoute,
   FaqRoute: FaqRoute,
   LoginRoute: LoginRoute,
@@ -585,7 +627,6 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   CarIdRoute: CarIdRoute,
   AdminIndexRoute: AdminIndexRoute,
-  DashboardIndexRoute: DashboardIndexRoute,
   DealerIndexRoute: DealerIndexRoute,
 }
 export const routeTree = rootRouteImport
