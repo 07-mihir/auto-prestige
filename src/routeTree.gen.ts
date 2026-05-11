@@ -48,6 +48,7 @@ import { Route as AdminUsersRouteImport } from './routes/admin.users'
 import { Route as AdminListingsRouteImport } from './routes/admin.listings'
 import { Route as AdminFraudRouteImport } from './routes/admin.fraud'
 import { Route as AdminDealersRouteImport } from './routes/admin.dealers'
+import { Route as AdminAnalyticsRouteImport } from './routes/admin.analytics'
 
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
@@ -244,6 +245,11 @@ const AdminDealersRoute = AdminDealersRouteImport.update({
   path: '/dealers',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminAnalyticsRoute = AdminAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -264,6 +270,7 @@ export interface FileRoutesByFullPath {
   '/register': typeof RegisterRoute
   '/sell': typeof SellRoute
   '/terms': typeof TermsRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/dealers': typeof AdminDealersRoute
   '/admin/fraud': typeof AdminFraudRoute
   '/admin/listings': typeof AdminListingsRoute
@@ -302,6 +309,7 @@ export interface FileRoutesByTo {
   '/register': typeof RegisterRoute
   '/sell': typeof SellRoute
   '/terms': typeof TermsRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/dealers': typeof AdminDealersRoute
   '/admin/fraud': typeof AdminFraudRoute
   '/admin/listings': typeof AdminListingsRoute
@@ -344,6 +352,7 @@ export interface FileRoutesById {
   '/register': typeof RegisterRoute
   '/sell': typeof SellRoute
   '/terms': typeof TermsRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/dealers': typeof AdminDealersRoute
   '/admin/fraud': typeof AdminFraudRoute
   '/admin/listings': typeof AdminListingsRoute
@@ -387,6 +396,7 @@ export interface FileRouteTypes {
     | '/register'
     | '/sell'
     | '/terms'
+    | '/admin/analytics'
     | '/admin/dealers'
     | '/admin/fraud'
     | '/admin/listings'
@@ -425,6 +435,7 @@ export interface FileRouteTypes {
     | '/register'
     | '/sell'
     | '/terms'
+    | '/admin/analytics'
     | '/admin/dealers'
     | '/admin/fraud'
     | '/admin/listings'
@@ -466,6 +477,7 @@ export interface FileRouteTypes {
     | '/register'
     | '/sell'
     | '/terms'
+    | '/admin/analytics'
     | '/admin/dealers'
     | '/admin/fraud'
     | '/admin/listings'
@@ -786,10 +798,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminDealersRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/analytics': {
+      id: '/admin/analytics'
+      path: '/analytics'
+      fullPath: '/admin/analytics'
+      preLoaderRoute: typeof AdminAnalyticsRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
 
 interface AdminRouteChildren {
+  AdminAnalyticsRoute: typeof AdminAnalyticsRoute
   AdminDealersRoute: typeof AdminDealersRoute
   AdminFraudRoute: typeof AdminFraudRoute
   AdminListingsRoute: typeof AdminListingsRoute
@@ -798,6 +818,7 @@ interface AdminRouteChildren {
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
+  AdminAnalyticsRoute: AdminAnalyticsRoute,
   AdminDealersRoute: AdminDealersRoute,
   AdminFraudRoute: AdminFraudRoute,
   AdminListingsRoute: AdminListingsRoute,
