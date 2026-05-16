@@ -9,10 +9,7 @@ export function Footer() {
         <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-10">
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center gap-2">
-              <img src={logo} alt="DriveX logo" className="h-9 w-9 rounded-xl object-cover" />
-              <span className="font-display text-xl font-bold">
-                Drive<span className="text-gradient-primary">X</span>
-              </span>
+              <img src={logo} alt="DriveX logo" className="h-10 w-auto object-contain" />
             </Link>
             <p className="mt-4 text-sm text-muted-foreground max-w-sm">
               India's premium AI-powered marketplace for certified pre-owned cars. Buy, sell,

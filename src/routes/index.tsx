@@ -4,6 +4,10 @@ import {
   Sparkles,
   ShieldCheck,
   Car as CarIcon,
+  CarFront,
+  CarTaxiFront,
+  Truck,
+  Gem,
   TrendingUp,
   Bot,
   MapPin,
@@ -34,13 +38,26 @@ export const Route = createFileRoute("/")({
 });
 
 const bodyTypes = [
-  { name: "SUV", count: 1240 },
-  { name: "Sedan", count: 980 },
-  { name: "Hatchback", count: 1560 },
-  { name: "Coupe", count: 230 },
-  { name: "Electric", count: 410 },
-  { name: "Luxury", count: 320 },
+  { name: "SUV", count: 1240, Icon: Truck },
+  { name: "Sedan", count: 980, Icon: CarFront },
+  { name: "Hatchback", count: 1560, Icon: CarIcon },
+  { name: "Coupe", count: 230, Icon: CarTaxiFront },
+  { name: "Electric", count: 410, Icon: Zap },
+  { name: "Luxury", count: 320, Icon: Gem },
 ];
+
+const brandLogos: Record<string, string> = {
+  BMW: "https://www.carlogos.org/car-logos/bmw-logo.png",
+  "Mercedes-Benz": "https://www.carlogos.org/car-logos/mercedes-benz-logo.png",
+  Audi: "https://www.carlogos.org/car-logos/audi-logo.png",
+  Porsche: "https://www.carlogos.org/car-logos/porsche-logo.png",
+  Volkswagen: "https://www.carlogos.org/car-logos/volkswagen-logo.png",
+  Hyundai: "https://www.carlogos.org/car-logos/hyundai-logo.png",
+  Toyota: "https://www.carlogos.org/car-logos/toyota-logo.png",
+  Honda: "https://www.carlogos.org/car-logos/honda-logo.png",
+  "Land Rover": "https://www.carlogos.org/car-logos/land-rover-logo.png",
+  Tata: "https://www.carlogos.org/car-logos/tata-logo.png",
+};
 
 const stats = [
   { v: "50K+", l: "Verified cars" },
@@ -195,20 +212,16 @@ function Home() {
         </div>
         <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-10 gap-3">
           {brands.map((b) => {
-            const slug = b
-              .toLowerCase()
-              .replace("mercedes-benz", "mercedes")
-              .replace("land rover", "landrover")
-              .replace(/\s+/g, "");
+            const url = brandLogos[b];
             return (
               <Link
                 key={b}
                 to="/buy"
                 className="aspect-square glass rounded-xl flex flex-col items-center justify-center p-3 hover:border-primary/40 hover:bg-primary/5 transition-all group"
               >
-                <div className="w-10 h-10 rounded-lg bg-background/70 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform p-1.5">
+                <div className="w-12 h-12 rounded-lg bg-background/80 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform p-2">
                   <img
-                    src={`https://cdn.simpleicons.org/${slug}`}
+                    src={url}
                     alt={`${b} logo`}
                     loading="lazy"
                     className="w-full h-full object-contain"
@@ -249,7 +262,7 @@ function Home() {
               to="/buy"
               className="gradient-card glass rounded-xl p-5 hover-lift group"
             >
-              <CarIcon className="w-7 h-7 text-primary mb-3" />
+              <b.Icon className="w-7 h-7 text-primary mb-3" />
               <p className="font-display font-semibold">{b.name}</p>
               <p className="text-xs text-muted-foreground mt-1">{b.count.toLocaleString()} cars</p>
             </Link>
