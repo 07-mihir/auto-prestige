@@ -194,23 +194,54 @@ function Home() {
           </Link>
         </div>
         <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-10 gap-3">
-          {brands.map((b) => (
-            <Link
-              key={b}
-              to="/buy"
-              className="aspect-square glass rounded-xl flex flex-col items-center justify-center p-3 hover:border-primary/40 hover:bg-primary/5 transition-all group"
-            >
-              <div className="w-10 h-10 rounded-lg gradient-card flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-                <CarIcon className="w-5 h-5 text-primary" />
-              </div>
-              <span className="text-[11px] text-center font-medium truncate w-full">{b}</span>
-            </Link>
-          ))}
+          {brands.map((b) => {
+            const slug = b
+              .toLowerCase()
+              .replace("mercedes-benz", "mercedes")
+              .replace("land rover", "landrover")
+              .replace(/\s+/g, "");
+            return (
+              <Link
+                key={b}
+                to="/buy"
+                className="aspect-square glass rounded-xl flex flex-col items-center justify-center p-3 hover:border-primary/40 hover:bg-primary/5 transition-all group"
+              >
+                <div className="w-10 h-10 rounded-lg bg-background/70 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform p-1.5">
+                  <img
+                    src={`https://cdn.simpleicons.org/${slug}`}
+                    alt={`${b} logo`}
+                    loading="lazy"
+                    className="w-full h-full object-contain"
+                    onError={(e) => {
+                      (e.currentTarget as HTMLImageElement).style.display = "none";
+                    }}
+                  />
+                </div>
+                <span className="text-[11px] text-center font-medium truncate w-full">{b}</span>
+              </Link>
+            );
+          })}
         </div>
       </section>
 
       {/* BODY TYPES */}
       <section className="container mx-auto px-4 py-8">
+        <div className="flex items-end justify-between mb-8">
+          <div>
+            <p className="text-xs uppercase tracking-[0.2em] text-primary font-semibold">
+              Categories
+            </p>
+            <h2 className="font-display text-3xl sm:text-4xl font-bold mt-2">
+              Shop by body type
+            </h2>
+          </div>
+          <Link
+            to="/buy"
+            className="hidden sm:inline-flex items-center text-sm text-muted-foreground hover:text-primary"
+          >
+            See all <ArrowRight className="w-4 h-4 ml-1" />
+          </Link>
+        </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
           {bodyTypes.map((b) => (
             <Link

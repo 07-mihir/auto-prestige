@@ -141,6 +141,50 @@
   --border: oklch(0.9 0.008 260);
   --input: oklch(0.94 0.008 260);
   --glass: oklch(1 0 0 / 70%);
+  --destructive: oklch(0.6 0.22 25);
+  --destructive-foreground: oklch(0.99 0.003 260);
+  --success: oklch(0.6 0.16 155);
+  --success-foreground: oklch(0.99 0.003 260);
+  --warning: oklch(0.72 0.18 75);
+  --ring: oklch(0.65 0.2 40);
+  --sidebar: oklch(0.98 0.005 260);
+  --sidebar-foreground: oklch(0.18 0.02 260);
+  --sidebar-primary: oklch(0.65 0.2 40);
+  --sidebar-primary-foreground: oklch(0.99 0.003 260);
+  --sidebar-accent: oklch(0.94 0.008 260);
+  --sidebar-accent-foreground: oklch(0.18 0.02 260);
+  --sidebar-border: oklch(0.9 0.008 260);
+  --sidebar-ring: oklch(0.65 0.2 40);
+  --gradient-primary: linear-gradient(135deg, oklch(0.68 0.2 40), oklch(0.74 0.18 25));
+  --gradient-hero:
+    radial-gradient(ellipse at 30% 20%, oklch(0.68 0.2 40 / 0.18), transparent 60%),
+    radial-gradient(ellipse at 80% 80%, oklch(0.55 0.2 250 / 0.12), transparent 55%),
+    linear-gradient(180deg, oklch(0.99 0.003 260), oklch(0.96 0.005 260));
+  --gradient-card: linear-gradient(160deg, oklch(1 0 0 / 0.95), oklch(0.97 0.005 260 / 0.7));
+  --gradient-glow: radial-gradient(circle at center, oklch(0.65 0.2 40 / 0.3), transparent 70%);
+  --shadow-glow: 0 20px 60px -15px oklch(0.65 0.2 40 / 0.35);
+  --shadow-card: 0 10px 40px -10px oklch(0.2 0.02 260 / 0.12);
+  --shadow-elegant: 0 30px 80px -20px oklch(0.2 0.02 260 / 0.18);
+}
+
+.light .glass {
+  background: oklch(1 0 0 / 0.65);
+  border: 1px solid oklch(0.2 0.02 260 / 0.08);
+}
+.light .glass-strong {
+  background: oklch(1 0 0 / 0.85);
+  border: 1px solid oklch(0.2 0.02 260 / 0.1);
+}
+.light .grid-pattern {
+  background-image:
+    linear-gradient(oklch(0.2 0.02 260 / 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(0.2 0.02 260 / 0.05) 1px, transparent 1px);
+}
+.light .text-gradient {
+  background: linear-gradient(135deg, oklch(0.18 0.02 260), oklch(0.65 0.2 40));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 @layer base {
