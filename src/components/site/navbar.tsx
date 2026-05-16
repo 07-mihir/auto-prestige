@@ -1,7 +1,9 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Car, Menu, Search, Heart, User, X } from "lucide-react";
+import { Menu, Search, Heart, User, X, Sun, Moon } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { useTheme } from "@/hooks/use-theme";
+import logo from "@/assets/logo.png";
 
 const links = [
   { to: "/", label: "Home" },
@@ -16,6 +18,7 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const path = useRouterState({ select: (s) => s.location.pathname });
+  const { theme, toggle } = useTheme();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -35,12 +38,11 @@ export function Navbar() {
           className={`glass-strong rounded-2xl flex items-center justify-between px-4 sm:px-6 h-14 sm:h-16 transition-all ${scrolled ? "shadow-elegant" : ""}`}
         >
           <Link to="/" className="flex items-center gap-2 group">
-            <div className="relative">
-              <div className="w-9 h-9 rounded-xl gradient-primary flex items-center justify-center shadow-glow">
-                <Car className="w-5 h-5 text-primary-foreground" />
-              </div>
-              <div className="absolute -inset-1 gradient-primary rounded-xl blur-md opacity-50 group-hover:opacity-80 transition-opacity -z-10" />
-            </div>
+            <img
+              src={logo}
+              alt="DriveX logo"
+              className="h-9 w-9 rounded-xl object-cover shadow-glow"
+            />
             <span className="font-display text-xl font-bold tracking-tight">
               Drive<span className="text-gradient-primary">X</span>
             </span>
@@ -62,12 +64,25 @@ export function Navbar() {
           </div>
 
           <div className="hidden md:flex items-center gap-2">
-            <Button variant="ghost" size="icon" className="rounded-lg">
-              <Search className="w-4 h-4" />
+            <Button
+              variant="ghost"
+              size="icon"
+              className="rounded-lg"
+              onClick={toggle}
+              aria-label="Toggle theme"
+            >
+              {theme === "light" ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
             </Button>
-            <Button variant="ghost" size="icon" className="rounded-lg">
-              <Heart className="w-4 h-4" />
-            </Button>
+            <Link to="/buy">
+              <Button variant="ghost" size="icon" className="rounded-lg" aria-label="Search">
+                <Search className="w-4 h-4" />
+              </Button>
+            </Link>
+            <Link to="/dashboard/wishlist">
+              <Button variant="ghost" size="icon" className="rounded-lg" aria-label="Wishlist">
+                <Heart className="w-4 h-4" />
+              </Button>
+            </Link>
             <Link to="/login">
               <Button variant="ghost" size="sm" className="rounded-lg">
                 <User className="w-4 h-4 mr-2" />
@@ -84,13 +99,24 @@ export function Navbar() {
             </Link>
           </div>
 
-          <button
-            onClick={() => setOpen(!open)}
-            className="lg:hidden p-2 rounded-lg hover:bg-secondary/60"
-            aria-label="Menu"
-          >
-            {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
+          <div className="lg:hidden flex items-center gap-1">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="rounded-lg"
+              onClick={toggle}
+              aria-label="Toggle theme"
+            >
+              {theme === "light" ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
+            </Button>
+            <button
+              onClick={() => setOpen(!open)}
+              className="p-2 rounded-lg hover:bg-secondary/60"
+              aria-label="Menu"
+            >
+              {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
         </nav>
 
         {open && (
