@@ -87,11 +87,15 @@ function Compare() {
                 </div>
                 {slots.map((c, i) => (
                   <div key={i} className="font-medium self-center">
-                    {c
-                      ? typeof r.key === "function"
-                        ? r.key(c)
-                        : (c[r.key as keyof typeof c] as React.ReactNode)
-                      : <span className="text-muted-foreground/50">—</span>}
+                    {c ? (
+                      typeof r.key === "function" ? (
+                        r.key(c)
+                      ) : (
+                        (c[r.key as keyof typeof c] as string | number)
+                      )
+                    ) : (
+                      <span className="text-muted-foreground/50">—</span>
+                    )}
                   </div>
                 ))}
               </div>
