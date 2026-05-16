@@ -27,7 +27,9 @@ function WishlistPage() {
         <p className="text-sm text-muted-foreground">{cars.length} saved cars</p>
       </div>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {cars.map((c) => <CarCard key={c.id} car={c} />)}
+        {cars.map((c) => (
+          <CarCard key={c.id} car={c} />
+        ))}
       </div>
     </DashboardShell>
   );

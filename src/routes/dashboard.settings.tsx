@@ -27,13 +27,23 @@ function SettingsPage() {
         <div className="gradient-card glass rounded-2xl p-6">
           <h2 className="font-display font-semibold mb-4">Profile</h2>
           <div className="space-y-3">
-            {[["Full name", "John Doe"], ["Email", "john@drivex.com"], ["Phone", "+91 98xxxxxx12"], ["City", "Mumbai"]].map(([l, v]) => (
+            {[
+              ["Full name", "John Doe"],
+              ["Email", "john@drivex.com"],
+              ["Phone", "+91 98xxxxxx12"],
+              ["City", "Mumbai"],
+            ].map(([l, v]) => (
               <div key={l}>
                 <label className="text-xs text-muted-foreground">{l}</label>
-                <input defaultValue={v} className="w-full mt-1 bg-secondary/50 border border-border rounded-lg px-3 py-2 text-sm outline-none focus:border-primary" />
+                <input
+                  defaultValue={v}
+                  className="w-full mt-1 bg-secondary/50 border border-border rounded-lg px-3 py-2 text-sm outline-none focus:border-primary"
+                />
               </div>
             ))}
-            <Button className="rounded-lg gradient-primary text-primary-foreground">Save changes</Button>
+            <Button className="rounded-lg gradient-primary text-primary-foreground">
+              Save changes
+            </Button>
           </div>
         </div>
         <div className="gradient-card glass rounded-2xl p-6">
@@ -52,7 +62,9 @@ function SettingsPage() {
             ))}
           </div>
           <div className="border-t border-border mt-6 pt-4">
-            <Button variant="outline" className="rounded-lg text-destructive">Delete account</Button>
+            <Button variant="outline" className="rounded-lg text-destructive">
+              Delete account
+            </Button>
           </div>
         </div>
       </div>

@@ -1,4 +1,14 @@
-import { LayoutDashboard, Users, Building2, Car, Shield, BarChart3, IndianRupee, Settings, Megaphone } from "lucide-react";
+import {
+  LayoutDashboard,
+  Users,
+  Building2,
+  Car,
+  Shield,
+  BarChart3,
+  IndianRupee,
+  Settings,
+  Megaphone,
+} from "lucide-react";
 
 export const adminItems = [
   { to: "/admin", label: "Overview", icon: LayoutDashboard },

@@ -7,7 +7,11 @@ export const Route = createFileRoute("/admin/revenue")({
   component: () => (
     <DashboardShell title="Platform Admin" subtitle="Control center" items={adminItems}>
       <h1 className="font-display text-2xl font-bold mb-5">Revenue</h1>
-      <div className="gradient-card glass rounded-2xl p-6"><p className="text-muted-foreground">Subscriptions, listing fees, and auction commissions.</p></div>
+      <div className="gradient-card glass rounded-2xl p-6">
+        <p className="text-muted-foreground">
+          Subscriptions, listing fees, and auction commissions.
+        </p>
+      </div>
     </DashboardShell>
   ),
 });

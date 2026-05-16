@@ -16,7 +16,9 @@ export const Route = createFileRoute("/contact")({
             { icon: MapPin, l: "Visit", v: "Bandra Kurla Complex, Mumbai 400051" },
           ].map((c) => (
             <div key={c.l} className="gradient-card glass rounded-2xl p-5 flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl gradient-primary flex items-center justify-center"><c.icon className="w-5 h-5 text-primary-foreground" /></div>
+              <div className="w-12 h-12 rounded-xl gradient-primary flex items-center justify-center">
+                <c.icon className="w-5 h-5 text-primary-foreground" />
+              </div>
               <div>
                 <p className="text-xs uppercase tracking-wider text-muted-foreground">{c.l}</p>
                 <p className="font-semibold mt-0.5">{c.v}</p>
@@ -24,14 +26,31 @@ export const Route = createFileRoute("/contact")({
             </div>
           ))}
         </div>
-        <form className="gradient-card glass-strong rounded-2xl p-6 space-y-4" onSubmit={(e) => e.preventDefault()}>
+        <form
+          className="gradient-card glass-strong rounded-2xl p-6 space-y-4"
+          onSubmit={(e) => e.preventDefault()}
+        >
           <div className="grid sm:grid-cols-2 gap-4">
-            <input className="bg-input border border-border rounded-lg px-3 py-2.5 text-sm outline-none focus:border-primary" placeholder="Name" />
-            <input className="bg-input border border-border rounded-lg px-3 py-2.5 text-sm outline-none focus:border-primary" placeholder="Email" />
+            <input
+              className="bg-input border border-border rounded-lg px-3 py-2.5 text-sm outline-none focus:border-primary"
+              placeholder="Name"
+            />
+            <input
+              className="bg-input border border-border rounded-lg px-3 py-2.5 text-sm outline-none focus:border-primary"
+              placeholder="Email"
+            />
           </div>
-          <input className="bg-input border border-border rounded-lg px-3 py-2.5 text-sm outline-none focus:border-primary w-full" placeholder="Subject" />
-          <textarea className="bg-input border border-border rounded-lg px-3 py-2.5 text-sm outline-none focus:border-primary w-full min-h-[140px]" placeholder="How can we help?" />
-          <Button className="rounded-lg gradient-primary text-primary-foreground shadow-glow">Send message</Button>
+          <input
+            className="bg-input border border-border rounded-lg px-3 py-2.5 text-sm outline-none focus:border-primary w-full"
+            placeholder="Subject"
+          />
+          <textarea
+            className="bg-input border border-border rounded-lg px-3 py-2.5 text-sm outline-none focus:border-primary w-full min-h-[140px]"
+            placeholder="How can we help?"
+          />
+          <Button className="rounded-lg gradient-primary text-primary-foreground shadow-glow">
+            Send message
+          </Button>
         </form>
       </div>
     </div>

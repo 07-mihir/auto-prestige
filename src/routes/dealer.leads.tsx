@@ -1,5 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { LayoutDashboard, Car, Users, BarChart3, MessageCircle, Calendar, Settings, Crown, Phone, Mail } from "lucide-react";
+import {
+  LayoutDashboard,
+  Car,
+  Users,
+  BarChart3,
+  MessageCircle,
+  Calendar,
+  Settings,
+  Crown,
+  Phone,
+  Mail,
+} from "lucide-react";
 import { DashboardShell, StatCard } from "@/components/site/dashboard-shell";
 import { Button } from "@/components/ui/button";
 
@@ -54,7 +65,9 @@ function LeadsPage() {
                 <tr key={i} className="border-b border-border/40">
                   <td className="py-3">
                     <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 rounded-full gradient-primary flex items-center justify-center text-xs font-bold text-primary-foreground">{name[0]}</div>
+                      <div className="w-8 h-8 rounded-full gradient-primary flex items-center justify-center text-xs font-bold text-primary-foreground">
+                        {name[0]}
+                      </div>
                       <div>
                         <p>{name}</p>
                         <p className="text-[11px] text-muted-foreground">{email}</p>
@@ -63,11 +76,19 @@ function LeadsPage() {
                   </td>
                   <td className="py-3 text-muted-foreground">{car}</td>
                   <td className="py-3 font-medium">{budget}</td>
-                  <td className="py-3"><span className="px-2 py-0.5 rounded-md text-[11px] bg-primary/15 text-primary">{status}</span></td>
+                  <td className="py-3">
+                    <span className="px-2 py-0.5 rounded-md text-[11px] bg-primary/15 text-primary">
+                      {status}
+                    </span>
+                  </td>
                   <td className="py-3 text-right">
                     <div className="inline-flex gap-1">
-                      <Button size="sm" variant="outline" className="rounded-lg"><Phone className="w-3.5 h-3.5" /></Button>
-                      <Button size="sm" variant="outline" className="rounded-lg"><Mail className="w-3.5 h-3.5" /></Button>
+                      <Button size="sm" variant="outline" className="rounded-lg">
+                        <Phone className="w-3.5 h-3.5" />
+                      </Button>
+                      <Button size="sm" variant="outline" className="rounded-lg">
+                        <Mail className="w-3.5 h-3.5" />
+                      </Button>
                     </div>
                   </td>
                 </tr>

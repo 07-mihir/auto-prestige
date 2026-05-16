@@ -7,7 +7,11 @@ export const Route = createFileRoute("/admin/fraud")({
   component: () => (
     <DashboardShell title="Platform Admin" subtitle="Control center" items={adminItems}>
       <h1 className="font-display text-2xl font-bold mb-5">Fraud monitor</h1>
-      <div className="gradient-card glass rounded-2xl p-6"><p className="text-muted-foreground">Track suspicious activity, multi-account signals, and AI deepfake detections.</p></div>
+      <div className="gradient-card glass rounded-2xl p-6">
+        <p className="text-muted-foreground">
+          Track suspicious activity, multi-account signals, and AI deepfake detections.
+        </p>
+      </div>
     </DashboardShell>
   ),
 });

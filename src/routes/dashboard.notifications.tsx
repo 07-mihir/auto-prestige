@@ -1,5 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { LayoutDashboard, Heart, Car, MessageCircle, Calendar, Settings, Bell, TrendingDown, Tag, ShieldCheck } from "lucide-react";
+import {
+  LayoutDashboard,
+  Heart,
+  Car,
+  MessageCircle,
+  Calendar,
+  Settings,
+  Bell,
+  TrendingDown,
+  Tag,
+  ShieldCheck,
+} from "lucide-react";
 import { DashboardShell } from "@/components/site/dashboard-shell";
 
 export const Route = createFileRoute("/dashboard/notifications")({
@@ -25,10 +36,34 @@ const tone: Record<string, string> = {
 };
 
 const notifs = [
-  { icon: TrendingDown, color: "success", title: "Price dropped on BMW 5 Series", time: "2h ago", desc: "Now ₹47.5L (was ₹48.5L)" },
-  { icon: MessageCircle, color: "primary", title: "New message from Royal Auto Mart", time: "5h ago", desc: "Sure, you can come tomorrow at 11am." },
-  { icon: Tag, color: "accent", title: "Auction ending soon", time: "Yesterday", desc: "Mercedes C-Class — 4 hours left" },
-  { icon: ShieldCheck, color: "warning", title: "Inspection report ready", time: "2d ago", desc: "Hyundai Ioniq 5 passed 198/200 checks" },
+  {
+    icon: TrendingDown,
+    color: "success",
+    title: "Price dropped on BMW 5 Series",
+    time: "2h ago",
+    desc: "Now ₹47.5L (was ₹48.5L)",
+  },
+  {
+    icon: MessageCircle,
+    color: "primary",
+    title: "New message from Royal Auto Mart",
+    time: "5h ago",
+    desc: "Sure, you can come tomorrow at 11am.",
+  },
+  {
+    icon: Tag,
+    color: "accent",
+    title: "Auction ending soon",
+    time: "Yesterday",
+    desc: "Mercedes C-Class — 4 hours left",
+  },
+  {
+    icon: ShieldCheck,
+    color: "warning",
+    title: "Inspection report ready",
+    time: "2d ago",
+    desc: "Hyundai Ioniq 5 passed 198/200 checks",
+  },
 ];
 
 function NotifsPage() {
@@ -38,7 +73,11 @@ function NotifsPage() {
       <div className="gradient-card glass rounded-2xl divide-y divide-border/40">
         {notifs.map((n, i) => (
           <div key={i} className="p-5 flex items-start gap-4 hover:bg-secondary/30 transition">
-            <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${tone[n.color]}`}><n.icon className="w-5 h-5" /></div>
+            <div
+              className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${tone[n.color]}`}
+            >
+              <n.icon className="w-5 h-5" />
+            </div>
             <div className="flex-1">
               <p className="font-semibold text-sm">{n.title}</p>
               <p className="text-xs text-muted-foreground mt-0.5">{n.desc}</p>

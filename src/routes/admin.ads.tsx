@@ -7,7 +7,9 @@ export const Route = createFileRoute("/admin/ads")({
   component: () => (
     <DashboardShell title="Platform Admin" subtitle="Control center" items={adminItems}>
       <h1 className="font-display text-2xl font-bold mb-5">Ad campaigns</h1>
-      <div className="gradient-card glass rounded-2xl p-6"><p className="text-muted-foreground">Manage advertiser campaigns and ad placements.</p></div>
+      <div className="gradient-card glass rounded-2xl p-6">
+        <p className="text-muted-foreground">Manage advertiser campaigns and ad placements.</p>
+      </div>
     </DashboardShell>
   ),
 });

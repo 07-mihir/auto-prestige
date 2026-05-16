@@ -7,7 +7,11 @@ export const Route = createFileRoute("/admin/settings")({
   component: () => (
     <DashboardShell title="Platform Admin" subtitle="Control center" items={adminItems}>
       <h1 className="font-display text-2xl font-bold mb-5">Platform settings</h1>
-      <div className="gradient-card glass rounded-2xl p-6"><p className="text-muted-foreground">Feature flags, fees, support email, and global config.</p></div>
+      <div className="gradient-card glass rounded-2xl p-6">
+        <p className="text-muted-foreground">
+          Feature flags, fees, support email, and global config.
+        </p>
+      </div>
     </DashboardShell>
   ),
 });

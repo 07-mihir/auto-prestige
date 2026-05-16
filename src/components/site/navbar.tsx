@@ -27,9 +27,13 @@ export function Navbar() {
   useEffect(() => setOpen(false), [path]);
 
   return (
-    <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled ? "py-2" : "py-4"}`}>
+    <header
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled ? "py-2" : "py-4"}`}
+    >
       <div className="container mx-auto px-4">
-        <nav className={`glass-strong rounded-2xl flex items-center justify-between px-4 sm:px-6 h-14 sm:h-16 transition-all ${scrolled ? "shadow-elegant" : ""}`}>
+        <nav
+          className={`glass-strong rounded-2xl flex items-center justify-between px-4 sm:px-6 h-14 sm:h-16 transition-all ${scrolled ? "shadow-elegant" : ""}`}
+        >
           <Link to="/" className="flex items-center gap-2 group">
             <div className="relative">
               <div className="w-9 h-9 rounded-xl gradient-primary flex items-center justify-center shadow-glow">
@@ -37,7 +41,9 @@ export function Navbar() {
               </div>
               <div className="absolute -inset-1 gradient-primary rounded-xl blur-md opacity-50 group-hover:opacity-80 transition-opacity -z-10" />
             </div>
-            <span className="font-display text-xl font-bold tracking-tight">Drive<span className="text-gradient-primary">X</span></span>
+            <span className="font-display text-xl font-bold tracking-tight">
+              Drive<span className="text-gradient-primary">X</span>
+            </span>
           </Link>
 
           <div className="hidden lg:flex items-center gap-1">
@@ -56,13 +62,33 @@ export function Navbar() {
           </div>
 
           <div className="hidden md:flex items-center gap-2">
-            <Button variant="ghost" size="icon" className="rounded-lg"><Search className="w-4 h-4" /></Button>
-            <Button variant="ghost" size="icon" className="rounded-lg"><Heart className="w-4 h-4" /></Button>
-            <Link to="/login"><Button variant="ghost" size="sm" className="rounded-lg"><User className="w-4 h-4 mr-2" />Sign in</Button></Link>
-            <Link to="/sell"><Button size="sm" className="rounded-lg gradient-primary text-primary-foreground hover:opacity-90 shadow-glow">Sell Car</Button></Link>
+            <Button variant="ghost" size="icon" className="rounded-lg">
+              <Search className="w-4 h-4" />
+            </Button>
+            <Button variant="ghost" size="icon" className="rounded-lg">
+              <Heart className="w-4 h-4" />
+            </Button>
+            <Link to="/login">
+              <Button variant="ghost" size="sm" className="rounded-lg">
+                <User className="w-4 h-4 mr-2" />
+                Sign in
+              </Button>
+            </Link>
+            <Link to="/sell">
+              <Button
+                size="sm"
+                className="rounded-lg gradient-primary text-primary-foreground hover:opacity-90 shadow-glow"
+              >
+                Sell Car
+              </Button>
+            </Link>
           </div>
 
-          <button onClick={() => setOpen(!open)} className="lg:hidden p-2 rounded-lg hover:bg-secondary/60" aria-label="Menu">
+          <button
+            onClick={() => setOpen(!open)}
+            className="lg:hidden p-2 rounded-lg hover:bg-secondary/60"
+            aria-label="Menu"
+          >
             {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </nav>
@@ -71,13 +97,26 @@ export function Navbar() {
           <div className="lg:hidden mt-2 glass-strong rounded-2xl p-4 animate-fade-up">
             <div className="flex flex-col gap-1">
               {links.map((l) => (
-                <Link key={l.to} to={l.to} className="px-4 py-3 rounded-lg text-sm font-medium hover:bg-secondary/60">
+                <Link
+                  key={l.to}
+                  to={l.to}
+                  className="px-4 py-3 rounded-lg text-sm font-medium hover:bg-secondary/60"
+                >
                   {l.label}
                 </Link>
               ))}
               <div className="h-px bg-border my-2" />
-              <Link to="/login"><Button variant="ghost" className="w-full justify-start"><User className="w-4 h-4 mr-2" />Sign in</Button></Link>
-              <Link to="/sell"><Button className="w-full gradient-primary text-primary-foreground">Sell your car</Button></Link>
+              <Link to="/login">
+                <Button variant="ghost" className="w-full justify-start">
+                  <User className="w-4 h-4 mr-2" />
+                  Sign in
+                </Button>
+              </Link>
+              <Link to="/sell">
+                <Button className="w-full gradient-primary text-primary-foreground">
+                  Sell your car
+                </Button>
+              </Link>
             </div>
           </div>
         )}
