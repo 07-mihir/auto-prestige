@@ -186,6 +186,23 @@
   background-clip: text;
   color: transparent;
 }
+.light .animate-shimmer {
+  background: linear-gradient(90deg, transparent, oklch(0.2 0.02 260 / 0.08), transparent);
+  background-size: 200% 100%;
+}
+.light .animate-glow-pulse {
+  animation: glowPulseLight 2.4s ease-out infinite;
+}
+@keyframes glowPulseLight {
+  0%, 100% { box-shadow: 0 0 0 0 oklch(0.65 0.2 40 / 0.45); }
+  50%      { box-shadow: 0 0 0 18px oklch(0.65 0.2 40 / 0); }
+}
+.light .hover-lift:hover {
+  box-shadow: 0 20px 50px -20px oklch(0.2 0.02 260 / 0.2);
+}
+.light .shadow-card { box-shadow: 0 8px 30px -10px oklch(0.2 0.02 260 / 0.12); }
+.light .shadow-elegant { box-shadow: 0 24px 60px -20px oklch(0.2 0.02 260 / 0.18); }
+.light .shadow-glow { box-shadow: 0 18px 50px -15px oklch(0.65 0.2 40 / 0.3); }
 
 @layer base {
   * {
