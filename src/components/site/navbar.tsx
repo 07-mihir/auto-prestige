@@ -41,11 +41,8 @@ export function Navbar() {
             <img
               src={logo}
               alt="DriveX logo"
-              className="h-9 w-9 rounded-xl object-cover shadow-glow"
+              className="h-10 w-auto object-contain"
             />
-            <span className="font-display text-xl font-bold tracking-tight">
-              Drive<span className="text-gradient-primary">X</span>
-            </span>
           </Link>
 
           <div className="hidden lg:flex items-center gap-1">
