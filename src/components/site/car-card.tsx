@@ -1,10 +1,13 @@
 import { Link } from "@tanstack/react-router";
 import { Heart, Fuel, Gauge, MapPin, Settings2, ShieldCheck, Star } from "lucide-react";
+import { useState } from "react";
+import { toast } from "sonner";
 import type { Car } from "@/lib/cars-data";
 import { formatPrice } from "@/lib/cars-data";
 import { Button } from "@/components/ui/button";
 
 export function CarCard({ car }: { car: Car }) {
+  const [liked, setLiked] = useState(false);
   return (
     <Link to="/car/$id" params={{ id: car.id }} className="group block">
       <div className="relative gradient-card glass rounded-2xl overflow-hidden hover-lift">
@@ -35,9 +38,14 @@ export function CarCard({ car }: { car: Car }) {
           )}
           <button
             className="absolute top-3 right-3 w-9 h-9 rounded-lg glass-strong flex items-center justify-center hover:text-primary transition-colors"
-            onClick={(e) => e.preventDefault()}
+            onClick={(e) => {
+              e.preventDefault();
+              setLiked((v) => !v);
+              toast.success(liked ? "Removed from wishlist" : "Added to wishlist");
+            }}
+            aria-label="Add to wishlist"
           >
-            <Heart className="w-4 h-4" />
+            <Heart className={`w-4 h-4 ${liked ? "fill-destructive text-destructive" : ""}`} />
           </button>
           <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs">
             <span className="px-2 py-1 rounded-md glass-strong">{car.year}</span>
