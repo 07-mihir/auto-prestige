@@ -389,9 +389,9 @@ function Home() {
                     Get free valuation
                   </Button>
                 </Link>
-                <Link to="/dealer">
+                <Link to="/buy">
                   <Button size="lg" variant="outline" className="rounded-xl">
-                    I'm a dealer
+                    Browse cars
                   </Button>
                 </Link>
               </div>
