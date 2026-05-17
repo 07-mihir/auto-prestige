@@ -414,6 +414,38 @@ function Home() {
 
       {/* TESTIMONIALS */}
       <section className="container mx-auto px-4 py-16">
+        <div className="mb-16 relative overflow-hidden rounded-3xl border border-primary/20 bg-gradient-to-br from-primary/10 via-accent/5 to-transparent p-8 sm:p-12">
+          <div className="grid lg:grid-cols-[1fr_auto] gap-6 items-center">
+            <div>
+              <p className="text-xs uppercase tracking-[0.2em] text-primary font-semibold">
+                For dealers & garages
+              </p>
+              <h2 className="font-display text-2xl sm:text-4xl font-bold mt-2">
+                Grow your dealership with DriveX Pro
+              </h2>
+              <p className="mt-3 text-sm sm:text-base text-muted-foreground max-w-2xl">
+                Manage inventory, capture verified leads, run live auctions and access AI pricing
+                — built for serious dealers and multi-brand garages.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <Link to="/dealer">
+                <Button
+                  size="lg"
+                  className="rounded-xl gradient-primary text-primary-foreground shadow-glow"
+                >
+                  Open dealer console
+                </Button>
+              </Link>
+              <Link to="/pricing">
+                <Button size="lg" variant="outline" className="rounded-xl">
+                  See plans
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+
         <div className="grid lg:grid-cols-3 gap-5">
           {[
             {
