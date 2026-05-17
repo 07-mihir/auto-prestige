@@ -1,5 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useState } from "react";
+import { toast } from "sonner";
 import {
   ArrowLeft,
   BadgeCheck,
@@ -22,6 +23,11 @@ import {
 import { cars, formatPrice } from "@/lib/cars-data";
 import { CarCard } from "@/components/site/car-card";
 import { Button } from "@/components/ui/button";
+import {
+  BookTestDriveDialog,
+  MakeOfferDialog,
+  LoanEligibilityDialog,
+} from "@/components/site/car-dialogs";
 
 export const Route = createFileRoute("/car/$id")({
   loader: ({ params }) => {
@@ -64,6 +70,30 @@ function CarDetails() {
   const { car } = Route.useLoaderData();
   const [tenure, setTenure] = useState(60);
   const [downPayment, setDownPayment] = useState(Math.round(car.price * 0.2));
+  const [tdOpen, setTdOpen] = useState(false);
+  const [offerOpen, setOfferOpen] = useState(false);
+  const [loanOpen, setLoanOpen] = useState(false);
+  const [liked, setLiked] = useState(false);
+
+  const dealerPhone = "+919876543210";
+  const handleShare = async () => {
+    const url = typeof window !== "undefined" ? window.location.href : "";
+    const title = `${car.year} ${car.brand} ${car.model}`;
+    try {
+      if (typeof navigator !== "undefined" && navigator.share) {
+        await navigator.share({ title, url });
+      } else {
+        await navigator.clipboard.writeText(url);
+        toast.success("Link copied to clipboard");
+      }
+    } catch {
+      /* user cancelled */
+    }
+  };
+  const handleLike = () => {
+    setLiked((v) => !v);
+    toast.success(liked ? "Removed from wishlist" : "Added to wishlist");
+  };
   const rate = 0.0099; // ~8.49% annual / 12 (approx)
   const principal = car.price - downPayment;
   const emi = Math.round(
@@ -113,10 +143,18 @@ function CarDetails() {
               )}
             </div>
             <div className="absolute top-4 right-4 flex gap-2">
-              <button className="w-10 h-10 rounded-lg glass-strong flex items-center justify-center hover:text-primary">
-                <Heart className="w-4 h-4" />
+              <button
+                onClick={handleLike}
+                aria-label="Wishlist"
+                className="w-10 h-10 rounded-lg glass-strong flex items-center justify-center hover:text-primary"
+              >
+                <Heart className={`w-4 h-4 ${liked ? "fill-destructive text-destructive" : ""}`} />
               </button>
-              <button className="w-10 h-10 rounded-lg glass-strong flex items-center justify-center hover:text-primary">
+              <button
+                onClick={handleShare}
+                aria-label="Share"
+                className="w-10 h-10 rounded-lg glass-strong flex items-center justify-center hover:text-primary"
+              >
                 <Share2 className="w-4 h-4" />
               </button>
             </div>
@@ -238,22 +276,31 @@ function CarDetails() {
 
               <div className="mt-5 space-y-2">
                 <Button
+                  onClick={() => setTdOpen(true)}
                   className="w-full rounded-lg gradient-primary text-primary-foreground hover:opacity-90 shadow-glow"
                   size="lg"
                 >
                   Book test drive
                 </Button>
                 <div className="grid grid-cols-2 gap-2">
-                  <Button variant="outline" className="rounded-lg">
+                  <Button asChild variant="outline" className="rounded-lg">
+                    <a href={`tel:${dealerPhone}`}>
                     <Phone className="w-4 h-4 mr-2" />
                     Call
+                    </a>
                   </Button>
-                  <Button variant="outline" className="rounded-lg">
+                  <Button asChild variant="outline" className="rounded-lg">
+                    <Link to="/dashboard/inbox">
                     <MessageCircle className="w-4 h-4 mr-2" />
                     Chat
+                    </Link>
                   </Button>
                 </div>
-                <Button variant="ghost" className="w-full rounded-lg">
+                <Button
+                  variant="ghost"
+                  className="w-full rounded-lg"
+                  onClick={() => setOfferOpen(true)}
+                >
                   Make an offer
                 </Button>
               </div>
@@ -310,13 +357,20 @@ function CarDetails() {
                   ₹{emi.toLocaleString("en-IN")}
                 </p>
               </div>
-              <Button variant="outline" className="w-full mt-3 rounded-lg">
+              <Button
+                variant="outline"
+                className="w-full mt-3 rounded-lg"
+                onClick={() => setLoanOpen(true)}
+              >
                 Check loan eligibility
               </Button>
             </div>
           </div>
         </aside>
       </div>
+      <BookTestDriveDialog car={car} open={tdOpen} onOpenChange={setTdOpen} />
+      <MakeOfferDialog car={car} open={offerOpen} onOpenChange={setOfferOpen} />
+      <LoanEligibilityDialog car={car} open={loanOpen} onOpenChange={setLoanOpen} />
     </div>
   );
 }
