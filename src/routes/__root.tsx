@@ -11,6 +11,7 @@ import {
 
 import { Navbar } from "@/components/site/navbar";
 import { Footer } from "@/components/site/footer";
+import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
   return (
@@ -84,6 +85,7 @@ function RootComponent() {
           <Outlet />
         </main>
         {!hideChrome && <Footer />}
+        <Toaster position="top-right" richColors />
       </div>
     </QueryClientProvider>
   );

@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { toast } from "sonner";
 import {
   LayoutDashboard,
   Car,
@@ -88,10 +89,24 @@ function InventoryPage() {
                 </td>
                 <td className="p-4 text-right">
                   <div className="inline-flex gap-1">
-                    <Button variant="outline" size="sm" className="rounded-lg">
-                      <Edit className="w-3.5 h-3.5" />
+                    <Button asChild variant="outline" size="sm" className="rounded-lg">
+                      <Link
+                        to="/dealer/inventory/$id/edit"
+                        params={{ id: c.id }}
+                        aria-label="Edit"
+                      >
+                        <Edit className="w-3.5 h-3.5" />
+                      </Link>
                     </Button>
-                    <Button variant="outline" size="sm" className="rounded-lg text-destructive">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="rounded-lg text-destructive"
+                      onClick={() =>
+                        toast.success(`${c.brand} ${c.model} removed from inventory`)
+                      }
+                      aria-label="Delete"
+                    >
                       <Trash2 className="w-3.5 h-3.5" />
                     </Button>
                   </div>
